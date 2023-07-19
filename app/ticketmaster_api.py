@@ -35,12 +35,12 @@ def search_events(query):
 
     if response.status_code == 200:
         data = response.json()
-        events = data["_embedded"]["events"]
+        events_data = data["_embedded"]["events"]
+        events  = []
         for event in events:
             event_id = event["id"]
-            print(get_event_details(event_id))
+            event += get_event_details(event_id)
+        return events
+        
     else:
-        print("Error:", response.status_code)
-
-query = input("Type in a query: ")
-search_events(query)
+        return "Error:" + response.status_code
