@@ -21,7 +21,7 @@ def get_event_details(event_id):
         event_obj['attractions'] = [attractions[i]['name'] for i in range(len(attractions))]
         event_obj['image'] = event_data['images'][0]['url']
         return event_obj
-
+    return None
 
 
 def search_events(query):
@@ -32,15 +32,14 @@ def search_events(query):
     }
 
     response = requests.get(BASE_URL, params=query_params)
-
+    events  = []
     if response.status_code == 200:
         data = response.json()
         events_data = data["_embedded"]["events"]
-        events  = []
+        
         for event in events:
             event_id = event["id"]
-            event += get_event_details(event_id)
-        return events
-        
-    else:
-        return "Error:" + response.status_code
+            event_details = get_event_details(event_id)
+            if event_details:
+                event += event_details
+    return events
