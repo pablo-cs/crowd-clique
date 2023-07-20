@@ -10,9 +10,9 @@ app.config['SECRET_KEY'] = '117b3274820db891a19981c6ab2a0fd2'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
-def login():
-    # Assuming you have a 'templates' folder in your project containing the 'login.html' file
-    from .forms import LoginForm
+def home():
+    return render_template('index.html')
+    
 def login():
     form = LoginForm()
     if form.validate_on_submit(): # checks if entries are valid
@@ -23,9 +23,6 @@ def login():
         flash(f'Account created for {form.username.data}!', 'success')
     return render_template('login.html', title='Log In', form=form)
 
-def signup():
-    # Assuming you have a 'templates' folder in your project containing the 'login.html' file
-    from .forms import RegistrationForm
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit(): # checks if entries are valid
