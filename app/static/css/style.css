@@ -13,6 +13,11 @@ body {
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+/* For a medium-sized image with a specific width */
+.event-image {
+  width: 300px; /* Adjust the width to your preferred size */
+  height: auto; /* Automatically adjust the height while maintaining the aspect ratio */
+}
 
 h1 {
     text-align: center;

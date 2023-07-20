@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h2 class = "event-header"> Your Events </h2>
+    <div class="event-container">
+    {% for event in events %}
+    <div class = "event-card">
+        <img class= "event-image" src="{{ event['image'] }}" alt="Event Image">
+            <form method="POST">
+                <input type="hidden" name="search" value="{{ event['name'] }}">
+                <button type="submit">{{ event['name'] }}</button>
+        </form>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock content %}
