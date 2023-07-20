@@ -18,9 +18,10 @@ def get_event_details(event_id):
         event_obj['name'] = event_data["name"]
         event_obj['date'] = event_data["dates"]["start"]["localDate"]
         event_obj['venue'] = event_data['_embedded']['venues'][0]['name']
-        attractions = event_data["_embedded"]["attractions"]
-        event_obj['attractions'] = [attractions[i]['name'] for i in range(len(attractions))]
+        # attractions = event_data["_embedded"]["attractions"]
+        # event_obj['attractions'] = [attractions[i]['name'] for i in range(len(attractions))]
         event_obj['image'] = event_data['images'][0]['url']
+        print(event_obj)
         return event_obj
     return None
 
@@ -37,10 +38,9 @@ def search_events(query):
     if response.status_code == 200:
         data = response.json()
         events_data = data["_embedded"]["events"]
-        
-        for event in events:
+        for event in events_data:
             event_id = event["id"]
             event_details = get_event_details(event_id)
             if event_details:
-                event += event_details
+                events.append(event_details)
     return events
