@@ -4,6 +4,19 @@
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
         <div class="form-group">
+            {{ form.name.label(class="form-control-label") }}
+            {% if form.name.errors %}
+                {{ form.name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.name(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
             {{ form.username.label(class="form-control-label") }}
             {% if form.username.errors %}
                 {{ form.username(class="form-control form-control-lg is-invalid") }}
@@ -53,6 +66,19 @@
                 </div>
             {% else %}
                 {{ form.confirm_password(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.pronouns.label(class="form-control-label") }}
+            {% if form.pronouns.errors %}
+                {{ form.pronouns(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.pronouns.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.pronouns(class="form-control form-control-lg") }}
             {% endif %}
         </div>
     </fieldset>
