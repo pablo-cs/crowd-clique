@@ -6,10 +6,10 @@ app = Flask(__name__, static_folder="app/static", template_folder="app/templates
 proxied = FlaskBehindProxy(app)
 app.secret_key ='bae5f8bb14e95a28a1d679fe833a7ba2'
 
-app.route('/')(event_landing)
+app.route('/')(home)
 app.route('/login')(login)
 app.route('/signup')(signup)
-
+app.route('/event_landing')(event_landing)
 
 
 
