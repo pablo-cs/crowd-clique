@@ -4,7 +4,7 @@ from app.routes import login
 
 app = Flask(__name__, template_folder='app/templates')
 proxied = FlaskBehindProxy(app)
-
+app.secret_key ='bae5f8bb14e95a28a1d679fe833a7ba2'
 
 app.route('/')(login)
 
