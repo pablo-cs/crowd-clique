@@ -14,6 +14,7 @@ def get_event_details(event_id):
     if response.status_code == 200:
         event_data = response.json()
         event_obj = {}
+        event_obj['id'] = event_id
         event_obj['name'] = event_data["name"]
         event_obj['date'] = event_data["dates"]["start"]["localDate"]
         event_obj['venue'] = event_data['_embedded']['venues'][0]['name']

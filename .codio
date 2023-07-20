@@ -6,9 +6,12 @@
 
 // Preview button configuration
   "preview": {
+        "Run Flask App": "https://{{domain5000}}/",
         "VS Code": "https://{{domain4000}}/",
         "Project Index (static)": "https://{{domain}}/{{index}}",
         "Current File (static)": "https://{{domain}}/{{filepath}}",
         "Box URL": "https://{{domain3000}}/"
   }
 }
+
+
