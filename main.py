@@ -1,22 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
-<<<<<<< HEAD
-from app.routes import login, signup, home, event_landing
 from app.models import db
-=======
 from app.routes import login, signup, home, event_landing, search
 
->>>>>>> refs/remotes/origin/master
 app = Flask(__name__, static_folder="app/static", template_folder="app/templates")
 proxied = FlaskBehindProxy(app)
 app.secret_key ='bae5f8bb14e95a28a1d679fe833a7ba2'
-
-<<<<<<< HEAD
-# app = Flask(__name__)
-# proxied = FlaskBehindProxy(app) 
-# app.config['SECRET_KEY'] = '117b3274820db891a19981c6ab2a0fd2'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-# db = SQLAlchemy(app)
 db.init_app(app)
 with app.app_context():
   db.create_all()
@@ -24,12 +14,7 @@ with app.app_context():
 app.route('/',methods=['GET', 'POST'])(home)
 app.route('/login',methods=['GET', 'POST'])(login)
 app.route('/signup',methods=['GET', 'POST'])(signup)
-=======
-app.route('/')(event_landing)
-app.route('/login')(login)
-app.route('/search', methods=['POST'])(search)  # Specify the allowed methods for the route
-app.route('/signup')(signup)
->>>>>>> refs/remotes/origin/master
+app.route('/search', methods=['POST'])(search)
 app.route('/event_landing')(event_landing)
 
 
