@@ -3,7 +3,7 @@ from flask_behind_proxy import FlaskBehindProxy
 
 from app.forms import LoginForm, RegistrationForm
 from flask_sqlalchemy import SQLAlchemy
-from app.ticketmaster_api import search_events
+from app.ticketmaster_api import search_events, suggest_events
 app = Flask(__name__)
 proxied = FlaskBehindProxy(app) 
 app.config['SECRET_KEY'] = '117b3274820db891a19981c6ab2a0fd2'
@@ -34,6 +34,6 @@ def signup():
     return render_template('signup.html', title='Sign Up', form=form)
 
 def event_landing():
-    events = search_events("concert")
-    return render_template('event_landing.html', events=events)
+    events = suggest_events()
+    return render_template('event_landing.html', your_events=search_events('aew'), suggested_events=events)
 

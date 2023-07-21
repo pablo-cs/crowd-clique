@@ -96,3 +96,66 @@ a {
 a:hover {
     text-decoration: underline;
 }
+/* Update the CSS for the event container to use flexbox */
+.event-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adjust as needed to control the space between items */
+}
+
+/* Update the CSS for the event container to use flexbox */
+.event-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adjust as needed to control the space between items */
+}
+
+/* Update the CSS for the event card */
+.event-card {
+  flex-basis: calc(33.33% - 20px); /* Adjust the width of each event card as per your preference */
+  margin-bottom: 20px;
+  border-radius: 7px;
+  text-align: center;
+  
+  
+}
+
+.event-land-name{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(0, 0, 0, 0);
+}
+
+/* Add CSS for the image button */
+.image-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  /* Set the container to a fixed 16:9 aspect ratio using a padding hack */
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (h/w * 100) */
+  overflow: hidden;
+}
+
+/* Set the image to take up the entirety of the container */
+.event-land-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Image will take the full width of the container */
+  height: 100%; /* Image will take the full height of the container */
+  object-fit: cover; /* Maintain aspect ratio while covering the container */
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.event-card:hover .event-land-image {
+  filter: blur(10px);
+}
+
+.event-card:hover .event-land-name {
+  color: white;
+}

@@ -3,7 +3,7 @@ import requests
 API_KEY = 'oZIHV1MD8gv1hwxxDlhKT3Pqud9pUs3R'
 API_SECRET = 'u80uc9VG5Kk0SjFM'
 BASE_URL = "https://app.ticketmaster.com/discovery/v2/events"
-
+BASE_SUGGEST_URL = "https://app.ticketmaster.com/discovery/v2/suggest"
 def get_event_details(event_id):
     url = f"{BASE_URL}/{event_id}"
     query_params = {
@@ -35,6 +35,24 @@ def search_events(query):
 
     response = requests.get(BASE_URL, params=query_params)
     events  = []
+    if response.status_code == 200:
+        data = response.json()
+        events_data = data["_embedded"]["events"]
+        for event in events_data:
+            event_id = event["id"]
+            event_details = get_event_details(event_id)
+            if event_details:
+                events.append(event_details)
+    return events
+
+def suggest_events():
+    query_params = {
+        "apikey": API_KEY
+    }
+
+    response = requests.get(BASE_SUGGEST_URL, params=query_params)
+    events  = []
+    print(response.status_code)
     if response.status_code == 200:
         data = response.json()
         events_data = data["_embedded"]["events"]

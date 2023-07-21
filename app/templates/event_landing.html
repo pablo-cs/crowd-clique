@@ -1,15 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h2 class = "event-header"> Your Events </h2>
-    <div class="event-container">
-    {% for event in events %}
-    <div class = "event-card">
-        <img class= "event-image" src="{{ event['image'] }}" alt="Event Image">
-            <form method="POST">
-                <input type="hidden" name="search" value="{{ event['name'] }}">
-                <button type="submit">{{ event['name'] }}</button>
+  <h2 class="event-header"> Your Events </h2>
+  <div class="event-container">
+    {% for event in your_events %}
+      <div class="event-card">
+        <form method="POST">
+          <input type="hidden" name="search" value="{{ event['name'] }}">
+          <button type="submit" class="image-button">
+            <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
+            <div class="event-land-name">{{ event['name']}} </div>
+          </button>
         </form>
-    </div>
+      </div>
     {% endfor %}
-    </div>
+  </div>
+
+  <h2 class="event-header"> Suggested Events</h2>
+  <div class="event-container">
+    {% for event in suggested_events %}
+      <div class="event-card">
+        <form method="POST">
+          <input type="hidden" name="search" value="{{ event['name'] }}">
+          <button type="submit" class="image-button">
+            <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
+            <div class="event-land-name">{{ event['name']}} </div>
+          </button>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}
