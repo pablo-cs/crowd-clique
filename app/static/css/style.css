@@ -159,6 +159,7 @@ a:hover {
 .event-card:hover .event-land-image {
   filter: blur(10px);
   box-shadow:black
+  transition: transform 0.5s ease
   
 }
 .event-card:hover{
