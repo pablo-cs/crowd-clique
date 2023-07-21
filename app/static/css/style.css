@@ -1,5 +1,10 @@
+@font-face {
+  font-family: 'MotleyForces';
+  src: url('../fonts/MotleyForcesRegular.ttf') format('truetype');
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'MotleyForces', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
@@ -124,6 +129,7 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0);
+  font-size: 2vw;
 }
 
 /* Add CSS for the image button */
@@ -152,8 +158,18 @@ a:hover {
 
 .event-card:hover .event-land-image {
   filter: blur(10px);
+  box-shadow:black
+  
+}
+.event-card:hover{
+  transform: scale(1.05);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s ease
+
 }
 
 .event-card:hover .event-land-name {
   color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  
 }

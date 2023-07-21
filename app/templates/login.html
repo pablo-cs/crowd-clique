@@ -1,5 +1,5 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "entry.html" %}
+{% block inner_content %}
 
 <form action="{{ url_for('login') }}" method="POST"> <!-- Replace "/login" with the actual login endpoint -->
    {{ form.hidden_tag() }}
@@ -35,5 +35,5 @@
         {{ form.submit(class="btn btn-outline-info") }}
     </div>
 </form>
-{% endblock content %}
+{% endblock inner_content %}
   
