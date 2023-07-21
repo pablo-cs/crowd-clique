@@ -6,23 +6,47 @@ body {
 }
 
 .container {
+    border-radius: 20px;
     max-width: 400px;
-    margin: 100px auto;
-    background-color: #fff;
-    border-radius: 5px;
+    margin-left: 100px auto;
+    margin-right: 100px auto;
+    margin-top: 100px auto;
+    background-color: rgb(0, 0, 0);
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-/* For a medium-sized image with a specific width */
-.event-image {
-  width: 300px; /* Adjust the width to your preferred size */
-  height: auto; /* Automatically adjust the height while maintaining the aspect ratio */
+
+.center{
+    display: flex;
+    justify-content: center;
 }
 
-h1 {
+.logincontainer{
+
+    max-width: 200px;
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: rgb(100, 94, 98);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+/* For a medium-sized image with a specific width */
+.event-image {
+    max-width: 365px;
+    margin: 20px auto;
+    background-color: rgb(151, 144, 144);
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.loginh1 {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+    margin-bottom: 5px;
+    color: rgb(192, 183, 183);
 }
 
 form {
@@ -59,9 +83,9 @@ button:hover {
     background-color: #0056b3;
 }
 
-p {
+.loginp {
     text-align: center;
-    margin-top: 20px;
+    color:rgb(192, 183, 183)
 }
 
 a {
