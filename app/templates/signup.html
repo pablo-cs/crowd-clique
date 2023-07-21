@@ -1,5 +1,5 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "entry.html" %}
+{% block inner_content %}
 <form method="POST" action="">
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
@@ -87,4 +87,4 @@
     </div>
 </form>
 
-{% endblock content %}
+{% endblock inner_content %}

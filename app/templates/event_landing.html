@@ -8,7 +8,10 @@
           <input type="hidden" name="search" value="{{ event['name'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
-            <div class="event-land-name">{{ event['name']}} </div>
+            <div class="event-land-name">{{ event['name']}} 
+                <br> {{ event['date']}} 
+                <br> {{ event['venue']}}
+            </div>
           </button>
         </form>
       </div>
@@ -23,7 +26,11 @@
           <input type="hidden" name="search" value="{{ event['name'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
-            <div class="event-land-name">{{ event['name']}} </div>
+            <div class="event-land-name">
+                {{ event['name']}} 
+                <br> {{ event['date']}} 
+                <br> {{ event['venue']}}
+            </div>
           </button>
         </form>
       </div>
