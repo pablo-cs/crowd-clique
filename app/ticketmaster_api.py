@@ -42,12 +42,15 @@ def search_events(query):
     events  = []
     if response.status_code == 200:
         data = response.json()
-        events_data = data["_embedded"]["events"]
-        for event in events_data:
-            event_id = event["id"]
-            event_details = get_event_details(event_id)
-            if event_details:
-                events.append(event_details)
+        try:
+            events_data = data["_embedded"]["events"]
+            for event in events_data:
+                event_id = event["id"]
+                event_details = get_event_details(event_id)
+                if event_details:
+                    events.append(event_details)
+        except:
+            return []
     return events
 
 def suggest_events():

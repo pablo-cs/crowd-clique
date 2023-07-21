@@ -41,3 +41,7 @@ def search():
                     'search_result.html', search_results=search_results
                 )
     return render_template('search_result.html', search_results=None)
+
+# def event_community():
+#     return render_template('event.html', event_details=event_details,
+#     event_comments=event_comments,)
