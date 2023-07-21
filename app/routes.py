@@ -35,5 +35,5 @@ def signup():
 
 def event_landing():
     events = suggest_events()
-    return render_template('event_landing.html', your_events=search_events('aew'), suggested_events=events)
+    return render_template('event_landing.html', your_events=[], suggested_events=events)
 

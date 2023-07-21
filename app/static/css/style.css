@@ -103,16 +103,14 @@ a:hover {
   justify-content: space-between; /* Adjust as needed to control the space between items */
 }
 
-/* Update the CSS for the event container to use flexbox */
+
 .event-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as needed to control the space between items */
-}
+  justify-content: space-between; 
 
-/* Update the CSS for the event card */
 .event-card {
-  flex-basis: calc(33.33% - 20px); /* Adjust the width of each event card as per your preference */
+  flex-basis: calc(33.33% - 20px);
   margin-bottom: 20px;
   border-radius: 7px;
   text-align: center;
