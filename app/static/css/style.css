@@ -129,6 +129,7 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0);
+  font-size: 2vw;
 }
 
 /* Add CSS for the image button */

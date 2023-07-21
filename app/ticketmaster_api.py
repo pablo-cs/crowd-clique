@@ -11,18 +11,23 @@ def get_event_details(event_id):
     }
     response = requests.get(url, params=query_params)
 
+
     if response.status_code == 200:
-        event_data = response.json()
-        event_obj = {}
-        event_obj['id'] = event_id
-        event_obj['name'] = event_data["name"]
-        event_obj['date'] = event_data["dates"]["start"]["localDate"]
-        event_obj['venue'] = event_data['_embedded']['venues'][0]['name']
-        # attractions = event_data["_embedded"]["attractions"]
-        # event_obj['attractions'] = [attractions[i]['name'] for i in range(len(attractions))]
-        event_obj['image'] = event_data['images'][0]['url']
-        print(event_obj)
-        return event_obj
+        try:
+            event_data = response.json()
+            event_obj = {}
+            event_obj['id'] = event_id
+            event_obj['name'] = event_data["name"]
+            event_obj['date'] = event_data["dates"]["start"]["localDate"]
+            print(event_obj)
+            event_obj['venue'] = event_data['_embedded']['venues'][0]['name']
+            # attractions = event_data["_embedded"]["attractions"]
+            # event_obj['attractions'] = [attractions[i]['name'] for i in range(len(attractions))]
+            event_obj['image'] = event_data['images'][0]['url']
+        except:
+            event_obj = None
+        finally:
+            return event_obj
     return None
 
 
@@ -30,7 +35,7 @@ def search_events(query):
     query_params = {
         "apikey": API_KEY,
         "keyword": query,
-        "size": 10  # Number of results to retrieve
+        "size": 20  # Number of results to retrieve
     }
 
     response = requests.get(BASE_URL, params=query_params)

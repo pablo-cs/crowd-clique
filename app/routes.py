@@ -35,5 +35,14 @@ def signup():
 
 def event_landing():
     events = suggest_events()
-    return render_template('event_landing.html', your_events=search_events('aew'), suggested_events=events)
+    return render_template('event_landing.html', your_events=[], suggested_events=events)
 
+def search():
+    search_query = request.form.get('search')
+    if search_query:
+        search_results = search_events(search_query)
+        if len(search_results) > 0:
+            return render_template(
+                    'search_result.html', search_results=search_results
+                )
+    return render_template('search_result.html', search_results=None)
