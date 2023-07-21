@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
-from app.routes import login,signup
+# from app.routes import login,signup
 from flask_sqlalchemy import SQLAlchemy
+
+
+db = SQLAlchemy()
 
 class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -15,5 +18,3 @@ class User(db.Model):
   def __repr__(self):
     return f"User('{self.username}', '{self.email}')"
 
-with app.app_context():
-  db.create_all()
