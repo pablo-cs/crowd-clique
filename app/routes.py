@@ -26,7 +26,7 @@ def login():
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit(): # checks if entries are valid
-        user = User(name=form.name.data,username=form.username.data,email=form.email.data,password=form.password.data,prnouns=form.pronouns.data)
+        user = User(username=form.username.data,email=form.email.data,password=form.password.data)
         db.session.add(user)
         db.session.commit()
         return flash(f'Account created for {form.username.data}!', 'success')
