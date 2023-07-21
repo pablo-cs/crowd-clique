@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
-# from app.routes import login,signup
 from flask_sqlalchemy import SQLAlchemy
 
 
