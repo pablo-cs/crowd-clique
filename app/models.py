@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
-# from app.routes import login,signup
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -13,6 +12,7 @@ class User(db.Model):
   email = db.Column(db.String(120), unique=True, nullable=False)
   password = db.Column(db.String(60), nullable=False)
   pronouns =db.Column(db.String(60), nullable=False)
+  avatar = db.Column(db.String(255), nullable = False)
 
 
   def __repr__(self):
