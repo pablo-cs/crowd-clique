@@ -5,24 +5,32 @@ from app.forms import LoginForm, RegistrationForm
 from flask_sqlalchemy import SQLAlchemy
 from app.ticketmaster_api import search_events, suggest_events
 
+img = {'d': '../static/img/dog.jpg', 'c': '../static/img/cat.jpg','s': '../static/img/sunset.jpg'}
 
 
 def home():
     return render_template('index.html')
-    
+
+def err():
+    return render_template('err.html',subtitle='Oh no!', text='The username and/or password entered is not correct. Please try again or sign up.')
+
 def login():
     form = LoginForm()
     if form.validate_on_submit(): # checks if entries are valid
-        user=User.query.filter_by(username=form.username.data).first_or_404(description='There is no data with {}'.format(form.username.data))
-        # print(form.username.data)
-        flash(f'Welcome,{form.username.data}!')
-        return redirect(url_for('event_landing'))
+        user=User.query.filter_by(username=form.username.data).first()
+        if user:
+            flash(f'Welcome,{form.username.data}!')
+            return redirect(url_for('event_landing'))
+        else:
+            return redirect(url_for('err'))
     return render_template('login.html', title='Log In', form=form)
+
+
 
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit(): # checks if entries are valid
-        user = User(name=form.name.data,username=form.username.data,email=form.email.data,password=form.password.data,pronouns=form.pronouns.data)
+        user = User(name=form.name.data,username=form.username.data,email=form.email.data,password=form.password.data,pronouns=form.pronouns.data, avatar=img[form.avatar.data])
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('event_landing'))

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
 from app.models import db
-from app.routes import login, signup, home, event_landing, search
+from app.routes import login, signup, home, event_landing, search, err
 
 app = Flask(__name__, static_folder="app/static", template_folder="app/templates")
 proxied = FlaskBehindProxy(app)
@@ -17,6 +17,7 @@ app.route('/login',methods=['GET', 'POST'])(login)
 app.route('/signup',methods=['GET', 'POST'])(signup)
 app.route('/search', methods=['POST'])(search)  # Specify the allowed methods for the route
 app.route('/event_landing')(event_landing)
+app.route('/err')(err)
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
