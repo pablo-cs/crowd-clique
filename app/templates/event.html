@@ -34,5 +34,6 @@
         <td id="time">{{ event['address']|safe }}</td>
         </tr>
          </table>
+        {% block comment %}{% endblock %}
   {% endif %}
 {% endblock inner_content %}
