@@ -15,12 +15,18 @@ def get_event_details(event_id):
     if response.status_code == 200:
         try:
             event_data = response.json()
+
             event_obj = {}
             event_obj['id'] = event_id
             event_obj['name'] = event_data["name"]
             event_obj['date'] = event_data["dates"]["start"]["localDate"]
+            event_obj['time'] = event_data["dates"]["start"]["localTime"]
+            if event_data['_embedded']['venues'] is None:
+                 event_obj['venue'] = event_data['place']['name']
+            else:
+                event_obj['venue'] = event_data['_embedded']['venues'][0]['name']
+            event_obj['address'] = format_venue_details(event_data['_embedded']['venues'][0])
             print(event_obj)
-            event_obj['venue'] = event_data['_embedded']['venues'][0]['name']
             # attractions = event_data["_embedded"]["attractions"]
             # event_obj['attractions'] = [attractions[i]['name'] for i in range(len(attractions))]
             event_obj['image'] = event_data['images'][0]['url']
@@ -70,3 +76,22 @@ def suggest_events():
             if event_details:
                 events.append(event_details)
     return events
+
+def format_venue_details(venue):
+    address = venue.get('address', {})
+    city = venue.get('city', {}).get('name', '')
+    state = venue.get('state', {}).get('name', '')
+    country = venue.get('country', {}).get('name', '')
+    
+    lines = []
+    if address.get('line1'):
+        lines.append(address['line1'])
+    if address.get('line2'):
+        lines.append(address['line2'])
+    if address.get('line3'):
+        lines.append(address['line3'])
+    
+    formatted_address = ', '.join(lines)
+    formatted_location = ', '.join(filter(None, [city, state, country]))
+    
+    return f"{formatted_address}<br>{formatted_location}"

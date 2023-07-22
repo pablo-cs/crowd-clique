@@ -50,6 +50,15 @@ def search():
                 )
     return render_template('search_result.html', search_results=None)
 
-# def event_community():
-#     return render_template('event.html', event_details=event_details,
+# def event_community_base():
+#     event_id = request.form.get('event_id')
+#     return render_template('event_comments.html', event_details=event_details,
+#     event_comments=event_comments,)
+
+# def event_community_replies():
+#     event_id = request.form.get('event_id')
+#     comment_id = request.form.get('comment_id')
+
+#     #query database for replies with that comment id
+#     return render_template('event_replies.html', event_details=event_details,
 #     event_comments=event_comments,)

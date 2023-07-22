@@ -1,10 +1,5 @@
-{% extends "layout.html" %}
-{% block content %}
-  <img src= "{{url_for('static', filename='img[form.avatar.data].jpg')}}" >
-    <form action="{{ url_for('search') }}" method="POST">
-        <input type="text" name="search" placeholder="Search..." required>
-        <button type="submit">Search</button>
-    </form>
+{% extends "post_entry.html" %}
+{% block inner_content %}
   <h2 class="event-header"> Your Events </h2>
   <div class="event-container">
     {% for event in your_events %}
@@ -41,4 +36,4 @@
       </div>
     {% endfor %}
   </div>
-{% endblock content %}
+{% endblock inner_content %}
