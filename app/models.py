@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
-from app.routes import login,signup
 from flask_sqlalchemy import SQLAlchemy
+
+
+db = SQLAlchemy()
 
 class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
@@ -10,6 +12,7 @@ class User(db.Model):
   email = db.Column(db.String(120), unique=True, nullable=False)
   password = db.Column(db.String(60), nullable=False)
   pronouns =db.Column(db.String(60), nullable=False)
+  avatar = db.Column(db.String(255), nullable = False)
 
 
   def __repr__(self):
@@ -35,6 +38,7 @@ class Replies(db.Model):
     comment_id = db.Column(db.Integer, unique=False, nullable = False)
     user_name = db.Column(db.String(20), unique = False, nullable = False)
     reply = db.Column(db.String(255), unique=False, nullable = False)
+
 
 
 

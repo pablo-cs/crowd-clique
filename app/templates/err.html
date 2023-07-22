@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ subtitle }}</h1>
+    <p>{{ text }}</p>
+    <div class="center btn-group" role="group" aria-label="User Options">
+        <a href="{{ url_for('login') }}" class="center logincontainer btn btn-primary">Login</a>
+        <a href="{{ url_for('signup') }}" class="center logincontainer btn btn-success">Signup</a>
+    </div>
+{% endblock content %}
