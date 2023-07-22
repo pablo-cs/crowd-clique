@@ -50,6 +50,31 @@ def search():
                 )
     return render_template('search_result.html', search_results=None)
 
+#prints to terminal..need to make it render
+def display_comment(comment, level=0):
+    print('{}{}: {}'.format('  ' * level, comment.author, comment.text))
+    for reply in comment.replies:
+        display_comment(reply, level + 1)
+
+def add_comment():
+    user_name = request.form.get('user_name')
+    comment = request.form.get('user_comment')
+    event_id = request.form.get('event_id')
+    player_data = get_player_data(player_name)
+    comment = CommentPlayer(event_id=event_id, user_name=user_name, comment=comment)
+    db.session.add(comment)
+    db.session.commit()
+    form = CommentForm()
+    for comment in Comment.query.filter_by(parent=None):
+        display_comment(comment)
+    event_comments = CommentPlayer.query.filter_by(event_id=event_id).all()
+    return render_template(
+        'event.html', 
+        comments=event_comments,
+        form=form
+    )
+
+
 # def event_community():
 #     return render_template('event.html', event_details=event_details,
 #     event_comments=event_comments,)
