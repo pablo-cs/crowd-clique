@@ -26,19 +26,17 @@ class CommentEvent(db.Model):
     user_name = db.Column(db.String(20), unique = False, nullable = False)
     comment = db.Column(db.String(255), unique=False, nullable = False)
     timestamp = db.Column(db.DateTime(), default=datetime.utcnow, index=True)
-    parent_id = db.Column(db.Integer, db.ForeignKey('comment.id')) #replies to each comment
-    replies = db.relationship(
-        'Comment', backref=db.backref('parent', remote_side=[id]),
-        lazy='dynamic')
-
-    def add_reply(self, text):
-        return Comment(text=text, parent=self)
 
     #to check getting right info
     def __repr__(self):
         return f"Player('{self.event_id}',{self.event_name},{self.user_name},{self.comment})"
 
-
-
-
+#storing replies for a comment
+class Reply (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, unique=False, nullable = False)
+    comment_id = db.Column(db.Integer, unique=False, nullable = False)
+    user_name = db.Column(db.String(20), unique = False, nullable = False)
+    reply = db.Column(db.String(255), unique=False, nullable = False)
+    timestamp = db.Column(db.DateTime(), default=datetime.utcnow, index=True)
 

@@ -51,12 +51,6 @@ def search():
     return render_template('search_result.html', search_results=None)
 
 
-#prints to terminal..need to make it render
-def display_comment(comment, level=0):
-    print('{}{}: {}'.format('  ' * level, comment.author, comment.text))
-    for reply in comment.replies:
-        display_comment(reply, level + 1)
-
 def add_comment():
     user_name = request.form.get('user_name')
     comment = request.form.get('user_comment')
@@ -66,8 +60,6 @@ def add_comment():
     db.session.add(comment)
     db.session.commit()
     form = CommentForm()
-    for comment in Comment.query.filter_by(parent=None):
-        display_comment(comment)
     event_comments = CommentPlayer.query.filter_by(event_id=event_id).all()
     return render_template(
         'event.html', 
@@ -75,25 +67,37 @@ def add_comment():
         form=form
     )
 
+def add_reply():
+    user_name = request.form.get('user_name')
+    reply = request.form.get('user_comment')
+    event_id = request.form.get('event_id')
+    comment_id = request.form.get('comment_id')
+    #how are we getting comment id
+    reply= Reply(comment_id=comment_id,event_id=event_id, user_name=user_name, reply=reply)
+    db.session.add(reply)
+    db.session.commit()
+    form = CommentForm()
+    comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
+    return render_template(
+        'event_replies.html', 
+        comment_replies=event_replies,
+        form=form
+    )
 
-# def event_community():
-#     return render_template('event.html', event_details=event_details,
 
-# def event_comments():
-#     event_id = request.form.get('event_id')
-#     event_details = get_event_details(event_id) #gets event object
-#     #query the comments database for comments with that event id
-#     event_comments = []
-#     return render_template('event_comments.html', event_details=event_details,
+def event_comments():
+    event_id = request.form.get('event_id')
+    event_details = get_event_details(event_id) #gets event object
+    #query the comments database for comments with that event id
+    event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
+    return render_template('event_comments.html', event_details=event_details,
+    event_comments=event_comments,)
 
-#     event_comments=event_comments,)
-
-# def event_replies():
-#     event_id = request.form.get('event_id')
-#     comment_id = request.form.get('comment_id')
-#     #query database for comment with that comment id
-#     event_details = get_event_details(event_id)
-    
-#     #query database for replies with that comment id
-#     return render_template('event_replies.html', event_details=event_details, comment=comment
-#     comment_replies=comment_replies)
+def event_replies():
+    event_id = request.form.get('event_id')
+    comment_id = request.form.get('comment_id')
+    event_details = get_event_details(event_id)
+    #query database for replies with that comment id
+    comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
+    return render_template('event_replies.html', event_details=event_details,comment=comment
+    comment_replies=comment_replies)
