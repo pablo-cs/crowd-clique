@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
-{% if search_results == None %}
-    <h2>Events Not Found</h2>
-  {% else %}
-    <form action="{{ url_for('search') }}" method="POST">
+  <form action="{{ url_for('search') }}" method="POST">
         <input type="text" name="search" placeholder="Search..." required>
         <button type="submit">Search</button>
     </form>
+{% if search_results == None %}
+    <h2>Events Not Found</h2>
+  {% else %}
+    
   <h2 class="event-header"> Your Events </h2>
   <div class="event-container">
     {% for event in search_results %}
