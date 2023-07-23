@@ -1,16 +1,11 @@
-{% extends "layout.html" %}
-{% block content %}
-  <img src= "{{url_for('static', filename='img[form.avatar.data].jpg')}}" >
-    <form action="{{ url_for('search') }}" method="POST">
-        <input type="text" name="search" placeholder="Search..." required>
-        <button type="submit">Search</button>
-    </form>
+{% extends "post_entry.html" %}
+{% block inner_content %}
   <h2 class="event-header"> Your Events </h2>
   <div class="event-container">
     {% for event in your_events %}
-      <div class="event-card">
+      <div action="{{ url_for('event_comment') }}" class="event-card">
         <form method="POST">
-          <input type="hidden" name="search" value="{{ event['name'] }}">
+          <input type="hidden" name="search" value="{{ event['id'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
             <div class="event-land-name">{{ event['name']}} 
@@ -27,8 +22,8 @@
   <div class="event-container">
     {% for event in suggested_events %}
       <div class="event-card">
-        <form method="POST">
-          <input type="hidden" name="search" value="{{ event['name'] }}">
+        <form action="{{ url_for('event_comment') }}" method="POST">
+          <input type="hidden" name="search" value="{{ event['id'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
             <div class="event-land-name">
@@ -41,4 +36,4 @@
       </div>
     {% endfor %}
   </div>
-{% endblock content %}
+{% endblock inner_content %}

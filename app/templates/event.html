@@ -1,0 +1,39 @@
+{% extends "post_entry.html" %}
+{% block inner_content %}
+  {% if event_details == None %}
+    <h2>Event Not Found</h2>
+  {% else %}
+    <div class="event-info">
+      <div class="event-image-container">
+        {% if event_details['image'] %}
+          <img class="event-image" src="{{ event_details['image'] }}" alt="Event Image">
+        {% else %}
+          <p>No event image available.</p>
+        {% endif %}
+      </div>
+      <div class="event-info-content">
+        <h1>Event Information</h1>
+         <table>
+        <tr>
+        <th>Name:</th>
+        <td id="name">{{ event_details['name'] }}</td>
+        </tr>
+        <tr>
+        <th>Venue:</th>
+        <td id="venue">{{ event_details['venue'] }}</td>
+        </tr>
+        <tr>
+        <th>Date:</th>
+        <td id="date">{{ event_details['date'] }}</td>
+        </tr>
+        <th>Time:</th>
+        <td id="time">{{ event_details['time'] }}</td>
+        </tr>
+        </tr>
+        <th>Address:</th>
+        <td id="time">{{ event_details['address']|safe }}</td>
+        </tr>
+         </table>
+        {% block comment %}{% endblock %}
+  {% endif %}
+{% endblock inner_content %}
