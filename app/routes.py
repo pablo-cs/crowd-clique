@@ -20,7 +20,6 @@ def login():
     if form.validate_on_submit(): # checks if entries are valid
         user=User.query.filter_by(user_name=form.username.data).first()
         if user:
-            flash(f'Welcome,{form.username.data}!')
             session['user_name'] = form.username.data
             return redirect(url_for('event_landing'))
         else:

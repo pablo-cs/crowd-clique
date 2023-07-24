@@ -1,34 +1,33 @@
-finalproject/crowd-clique/app/templates/event_replies.html
 {% extends "event.html" %}
 {% block comment %}
-{% for event_comment in event_comments %}
-    <div class="comment">
+<div class="bigbox">
+    {% for event_comment in event_comments %}
     <form action="{{ url_for('event_replies') }}" method="POST">
         <input type="hidden" name="comment_id" value="{{ event_comment.id }}">
         <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
         <button type="submit" class="comment-button">
-            <h3>{{ event_comment.comment }}</h3>
-            <h3>{{ event_comment.user_name }}</h3>
-            <h3>{{ event_comment.timestamp }}</h3>
+            <h3 class="tx">{{ event_comment.comment }}</h3>
+            <h3 class="usr"> • {{ event_comment.user_name }},{{ event_comment.timestamp }}</h3>
         </button>
     </form>
-</div>
-{% endfor %}
-    <div class = "comment">
-     {% for attende in attendees %}
-        <h3>People Attending</h3>
-        <tr>
-      <th id="name">{{ attende.user_name }}</th>
-        </tr>
-    </div>
     {% endfor %}
-  <h3>Add a Comment</h3>
-  <form id="comment-form" action="{{ url_for('add_comment') }}" method="POST">
-    {{ form.csrf_token }}
-    <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-    <label for="comment-input">Comment:</label>
-    <textarea id="comment-input" name="user_comment" rows="4" cols="50" required></textarea>
-    <br>
-    <button type="submit">Submit Comment</button>
-  </form>
+        <div class = "comment">
+        {% for attende in attendees %}
+            <h3>People Attending</h3>
+            <tr>
+        <th id="name">{{ attende.user_name }}</th>
+            </tr>
+        </div>
+        {% endfor %}
+    <div class="add-comment">
+        <form id="comment-form" action="{{ url_for('add_comment') }}" method="POST">
+            {{ form.csrf_token }}
+            <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
+            <label for="comment-input"></label>
+            <textarea id="comment-input" name="user_comment" rows="4" cols="50" required></textarea>
+            <br>
+            <button type="submit">Submit Comment</button>
+        </form>
+    </div>
+</div>
 {% endblock comment %}

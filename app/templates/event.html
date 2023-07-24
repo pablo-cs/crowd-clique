@@ -3,6 +3,7 @@
   {% if event_details == None %}
     <h2>Event Not Found</h2>
   {% else %}
+    <h1 class="event-name">{{ event_details['name']}}</h1>
     <div class="event-info">
       <div class="event-image-container">
         {% if event_details['image'] %}
@@ -14,10 +15,6 @@
       <div class="event-info-content">
         <h1>Event Information</h1>
          <table>
-        <tr>
-        <th>Name:</th>
-        <td id="name">{{ event_details['name'] }}</td>
-        </tr>
         <tr>
         <th>Venue:</th>
         <td id="venue">{{ event_details['venue'] }}</td>
@@ -34,6 +31,7 @@
         <td id="time">{{ event_details['address']|safe }}</td>
         </tr>
          </table>
+      </div>
         {% block comment %}{% endblock %}
   {% endif %}
 {% endblock inner_content %}
