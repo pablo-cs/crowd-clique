@@ -22,15 +22,4 @@
     <br>
     <button type="submit">Submit Comment</button>
   </form>
-    <div class="add-comment">
-        <form id="comment-form" action="{{ url_for('add_comment') }}" method="POST">
-            {{ form.csrf_token }}
-            <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-            <label for="comment-input"></label>
-            <textarea id="comment-input" name="user_comment" rows="4" cols="50" required></textarea>
-            <br>
-            <button type="submit">Submit Comment</button>
-        </form>
-    </div>
-</div>
 {% endblock comment %}
