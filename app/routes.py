@@ -123,3 +123,6 @@ def add_attendee():
             db.session.commit()
             
     return redirect(url_for('event_comments'))
+
+
+
