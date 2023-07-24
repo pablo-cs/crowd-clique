@@ -1,4 +1,5 @@
 import requests
+from PIL import Image
 
 API_KEY = 'oZIHV1MD8gv1hwxxDlhKT3Pqud9pUs3R'
 API_SECRET = 'u80uc9VG5Kk0SjFM'
@@ -26,11 +27,18 @@ def get_event_details(event_id):
             else:
                 event_obj['venue'] = event_data['_embedded']['venues'][0]['name']
             event_obj['address'] = format_venue_details(event_data['_embedded']['venues'][0])
-            print(event_obj)
             # attractions = event_data["_embedded"]["attractions"]
             # event_obj['attractions'] = [attractions[i]['name'] for i in range(len(attractions))]
-            event_obj['image'] = event_data['images'][0]['url']
+            image_urls = []
+            for image in event_data['images']:
+                image_urls.append(image['url'])
+            print(image_urls)
+            print(find_highest_resolution_image(image_urls))
+            event_obj['image'] = find_highest_resolution_image(image_urls)
+            
+            print(event_obj)
         except:
+            print('Error')
             event_obj = None
         finally:
             return event_obj
@@ -95,3 +103,30 @@ def format_venue_details(venue):
     formatted_location = ', '.join(filter(None, [city, state, country]))
     
     return f"{formatted_address}<br>{formatted_location}"
+
+session = requests.Session()
+
+def get_image_resolution(image_url):
+    try:
+        response = session.get(image_url, stream=True)
+        response.raise_for_status()  # Raise an exception for invalid URLs or non-200 status codes
+        image = Image.open(response.raw)
+        print(image.size)
+        return image.size
+    except Exception as e:
+        print(f"Error downloading image from URL: {image_url}. Error: {e}")
+        return (0, 0)  # Return (0, 0) for invalid or inaccessible URLs
+
+def find_highest_resolution_image(image_urls):
+    max_resolution = 0
+    highest_resolution_image_url = None
+
+    for url in image_urls:
+        width, height = get_image_resolution(url)
+        resolution = width * height
+
+        if resolution > max_resolution:
+            max_resolution = resolution
+            highest_resolution_image_url = url
+
+    return highest_resolution_image_url
