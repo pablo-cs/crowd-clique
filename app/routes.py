@@ -7,8 +7,6 @@ from app.ticketmaster_api import search_events, suggest_events, get_event_detail
 from datetime import datetime
 
 img = {'d': '../static/img/dog.jpg', 'c': '../static/img/cat.jpg','s': '../static/img/sunset.jpg'}
-
-
 def home():
     return render_template('index.html')
 
@@ -26,8 +24,6 @@ def login():
         else:
             return redirect(url_for('err'))
     return render_template('login.html', title='Log In', form=form)
-
-
 
 def signup():
     form = RegistrationForm()
@@ -53,7 +49,6 @@ def search():
                 )
     return render_template('search_result.html', search_results=None)
 
-
 def add_comment():
     user_name = session.get('user_name')
     comment = request.form.get('user_comment')
@@ -70,7 +65,6 @@ def add_comment():
         event_comments=event_comments,
         form=form
     )
-
 def add_reply():
     user_name = session.get('user_name')
     reply = request.form.get('reply')
@@ -90,15 +84,15 @@ def add_reply():
         form=form
     )
 
-
 def event_comments():
     event_id = request.form.get('event_id')
     event_details = get_event_details(event_id) #gets event object
     #query the comments database for comments with that event id
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     form = CommentForm()
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     return render_template('event_comments.html', event_details=event_details,
-    event_comments=event_comments,form=form)
+    event_comments=event_comments,attendees=attendees,form=form)
 
 def event_replies():
     event_id = request.form.get('event_id')
@@ -108,5 +102,24 @@ def event_replies():
     #query database for replies with that comment id
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     form = CommentForm()
-    return render_template('event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,
+    return render_template('event_replies.html', event_details=event_details,comment_id=comment_id,
     replies=comment_replies, form=form)
+
+
+def add_attendee():
+    """
+    Adds user to Attendance
+    """
+    user_name = session.get('user_name')
+    event_id = request.form.get('event_id')
+    if user_name:
+        already_attending = Attendance.query.filter_by(
+                            user_name=user_name.first())
+        if not already_attending:
+            attendee = Attendance(
+                event_id=event_id, 
+                user_name=user_name)
+            db.session.add(attendee)
+            db.session.commit()
+            
+    return redirect(url_for('event_comments'))
