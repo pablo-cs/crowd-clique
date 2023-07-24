@@ -94,6 +94,7 @@ def event_comments():
     return render_template('event_comments.html', event_details=event_details,
     event_comments=event_comments,attendees=attendees,form=form)
 
+
 def event_replies():
     event_id = request.form.get('event_id')
     comment_id = request.form.get('comment_id')
