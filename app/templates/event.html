@@ -51,6 +51,7 @@
             <img class="ava" src= "{{ url_for('static', filename=user.avatar) }}" alt="Avatar" >
         </div>
         <h3>{{ attendee.user_name }}</h3>
+        
         {% endfor%}
         {% block comment %}{% endblock %}
   {% endif %}
