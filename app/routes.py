@@ -31,7 +31,8 @@ def login():
 ##@app.route('/logout')
 def logout():
    session.pop('user_name', None)
-   return redirect(url_for('home'))
+   return render_template('logout.html',subtitle='Bye bye, see you next time!', text='clock here to return to the home page')
+    
 
 def signup():
     form = RegistrationForm()
