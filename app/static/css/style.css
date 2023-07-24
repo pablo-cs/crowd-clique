@@ -45,7 +45,7 @@ body {
     border-radius: 20px;
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top:-11%;
+    margin-top:-150px;
 }
 
 
@@ -195,7 +195,7 @@ a:hover {
 }
 .event-name {
   margin-left:45%;
-  margin-top:5%;
+  margin-top:2%;
   text-decoration: underline;
   font-size:60px;
   text-align: center;
@@ -248,11 +248,16 @@ a:hover {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
  .bigbox{
-   width: 50%;
-   height: 90%;
+   width: 630px;
+   height: 630px;
    margin-top:-400px;
    margin-left: 600px;
    background-color: #c5c9cc;
    border: 5px solid black;
    border-radius: 10px;
+   overflow-y:scroll ;
  }
+ .bigbox::-webkit-scrollbar {
+   display: none;
+}
+
