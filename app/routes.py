@@ -47,7 +47,7 @@ def signup():
 def event_landing():
     events = suggest_events()
     user = User.query.filter_by(user_name=session['user_name']).first()
-    your_events = get_user_event('user')
+    your_events = get_user_event(user.user_name)
     return render_template('event_landing.html', your_events=your_events, suggested_events=events, user=user)
 
 def search():
@@ -148,7 +148,8 @@ def add_attendee():
             db.session.add(attendee)
             db.session.commit()
             
-    return redirect(url_for('event_comments'))
+    return event_comments()
+
 
 
 def remove_attendee():
@@ -161,11 +162,11 @@ def remove_attendee():
     if attendee:
         db.session.delete(attendee)
         db.session.commit()
-    return redirect(url_for('event_comments'))
+    return event_comments()
 
 def get_user_event(user_name):
     user_events = Attendance.query.filter_by(user_name=user_name).all()
     ret_events = []
     for event in user_events:
-        ret_events.append(get_event_details(event))
+        ret_events.append(get_event_details(event.event_id))
     return ret_events
