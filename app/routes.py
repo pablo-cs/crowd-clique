@@ -59,7 +59,7 @@ def add_comment():
     db.session.add(comment)
     db.session.commit()
     form = CommentForm()
-    in_db = bool(Attendance.query.filter_by(user_name=user_name.first()))
+    in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
     attendees = Attendance.query.filter_by(event_id=event_id).all()
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     return render_template(
@@ -110,9 +110,9 @@ def event_replies():
     #query database for replies with that comment id
     attendees = Attendance.query.filter_by(event_id=event_id).all()
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
-    in_db = boolean(Attendance.query.filter_by(user_name=user_name).first())
+    in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
     form = CommentForm()
-    return render_template('event_replies.html', event_details=event_details,comment_id=comment_id,attendees=attendees,
+    return render_template('event_replies.html', event_details=event_details,comment=comment,comment_id=comment_id,attendees=attendees,
     replies=comment_replies, form=form, in_db=in_db)
 
 
