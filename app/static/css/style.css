@@ -73,7 +73,14 @@ input {
     border-radius: 4px;
     font-size: 16px;
 }
-
+.crowd-image{
+    max-width: 365px;
+    margin: 20px auto;
+    background-color: rgb(151, 144, 144);
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 button {
     padding: 10px;
     background-color: #007bff;
