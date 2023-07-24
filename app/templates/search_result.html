@@ -8,7 +8,7 @@
   <div class="event-container">
     {% for event in search_results %}
       <div class="event-card">
-        <form action="{{ url_for('event_comment') }}" method="POST">
+        <form action="{{ url_for('event_comments') }}" method="POST">
           <input type="hidden" name="search" value="{{ event['id'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">

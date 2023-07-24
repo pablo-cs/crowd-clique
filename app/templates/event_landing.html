@@ -3,7 +3,7 @@
   <h2 class="event-header"> Your Events </h2>
   <div class="event-container">
     {% for event in your_events %}
-      <div action="{{ url_for('event_comment') }}" class="event-card">
+      <div action="{{ url_for('event_comments') }}" class="event-card">
         <form method="POST">
           <input type="hidden" name="search" value="{{ event['id'] }}">
           <button type="submit" class="image-button">
@@ -22,7 +22,7 @@
   <div class="event-container">
     {% for event in suggested_events %}
       <div class="event-card">
-        <form action="{{ url_for('event_comment') }}" method="POST">
+        <form action="{{ url_for('event_comments') }}" method="POST">
           <input type="hidden" name="search" value="{{ event['id'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
