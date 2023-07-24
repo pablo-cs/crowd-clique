@@ -98,7 +98,7 @@ def add_reply():
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     return render_template(
         'event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,
-        replies=comment_replies,user=user,
+        replies=comment_replies,user=user,attendees=attendees,
         form=form, in_db=in_db
     )
 

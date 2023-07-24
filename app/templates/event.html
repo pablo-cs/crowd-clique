@@ -30,26 +30,23 @@
         <th>Address:</th>
         <td id="time">{{ event_details['address']|safe }}</td>
         </tr>
+        <th>
+          <td>
+            {% if not in_db %}
+              <form action="{{ url_for('add_attendee') }}" method="POST">
+                <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
+                <button type="submit">Attending?</button>
+              </form>
+            {% else %}
+              <form action="{{ url_for('remove_attendee') }}" method="POST">
+                <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
+                <button type="submit">Attending</button>
+              </form>
+            {% endif %}
+          </td>
+        </th>
          </table>
-        {% if not in_db %}
-          <form action="{{ url_for('add_attendee') }}" method="POST">
-            <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-            <button type="submit">Attending?</button>
-          </form>
-        {% else %}
-          <form action="{{ url_for('remove_attendee') }}" method="POST">
-            <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-            <button type="submit">Attending</button>
-          </form>
-        {% endif %}
-        <h3>People Attending</h3>
-        {% for attendee in attendees %}
-        <div class="avatar-container">
-            <img class="ava" src= "{{ url_for('static', filename=user.avatar) }}" alt="Avatar" >
-        </div>
-        <h3>{{ attendee.user_name }}</h3>
-        
-        {% endfor%}
+      </div>
         {% block comment %}{% endblock %}
   {% endif %}
 {% endblock inner_content %}
