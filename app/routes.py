@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for,flash, session
 from flask_behind_proxy import FlaskBehindProxy
-from app.models import User,db
-from app.forms import LoginForm, RegistrationForm
+from app.models import User,db, CommentEvent, Reply
+from app.forms import LoginForm, RegistrationForm, CommentForm
 from flask_sqlalchemy import SQLAlchemy
-from app.ticketmaster_api import search_events, suggest_events
+from app.ticketmaster_api import search_events, suggest_events, get_event_details
 from datetime import datetime
 
 img = {'d': '../static/img/dog.jpg', 'c': '../static/img/cat.jpg','s': '../static/img/sunset.jpg'}
@@ -88,14 +88,17 @@ def event_comments():
     event_details = get_event_details(event_id) #gets event object
     #query the comments database for comments with that event id
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
+    form = CommentForm()
     return render_template('event_comments.html', event_details=event_details,
-    event_comments=event_comments)
-    
+    event_comments=event_comments,form=form)
+
 def event_replies():
     event_id = request.form.get('event_id')
     comment_id = request.form.get('comment_id')
     event_details = get_event_details(event_id)
     #query database for replies with that comment id
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
+    form = CommentForm()
     return render_template('event_replies.html', event_details=event_details,comment_id=comment_id,
-    replies=comment_replies)
+    replies=comment_replies, form=form)
+

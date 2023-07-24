@@ -22,3 +22,10 @@ class LoginForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log In')
+
+class CommentForm(FlaskForm):
+    username = StringField('Username',
+                           validators=[DataRequired(), Length(min=2, max=20)])
+    comment = StringField('Comment',
+                        validators=[DataRequired(), Length(min=1, max=255)])
+    submit = SubmitField('Post Comment')
