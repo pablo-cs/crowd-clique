@@ -14,38 +14,56 @@
       </div>
       <div class="event-info-content">
         <h1>Event Information</h1>
-         <table>
-        <tr>
-        <th>Venue:</th>
-        <td id="venue">{{ event_details['venue'] }}</td>
-        </tr>
-        <tr>
-        <th>Date:</th>
-        <td id="date">{{ event_details['date'] }}</td>
-        </tr>
-        <th>Time:</th>
-        <td id="time">{{ event_details['time'] }}</td>
-        </tr>
-        </tr>
-        <th>Address:</th>
-        <td id="time">{{ event_details['address']|safe }}</td>
-        </tr>
-        <th>
-          <td>
-            {% if not in_db %}
-              <form action="{{ url_for('add_attendee') }}" method="POST">
-                <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-                <button type="submit">Attending?</button>
-              </form>
-            {% else %}
-              <form action="{{ url_for('remove_attendee') }}" method="POST">
-                <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-                <button type="submit">Attending</button>
-              </form>
-            {% endif %}
-          </td>
-        </th>
-         </table>
+<table>
+  <tr>
+    <th>Venue:</th>
+    <td id="venue">{{ event_details['venue'] }}</td>
+  </tr>
+  <tr>
+    <th>Date:</th>
+    <td id="date">{{ event_details['date'] }}</td>
+  </tr>
+  <tr>
+    <th>Time:</th>
+    <td id="time">{{ event_details['time'] }}</td>
+  </tr>
+  <tr>
+    <th>Address:</th>
+    <td id="time">{{ event_details['address']|safe }}</td>
+  </tr>
+  <tr>
+    <th>
+      <td>
+        {% if not in_db %}
+          <form action="{{ url_for('add_attendee') }}" method="POST">
+            <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
+            <button type="submit">Attending?</button>
+          </form>
+        {% else %}
+          <form action="{{ url_for('remove_attendee') }}" method="POST">
+            <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
+            <button type="submit">Attending</button>
+          </form>
+        {% endif %}
+      </td>
+    </th>
+  </tr>
+  <tr>
+    <th>Attendees:</th>
+    <td>
+      <table>
+        <tbody>
+          {% for attendee in attendees %}
+            <tr>
+              <td id="name">{{ attendee.user_name }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</table>
+
       </div>
         {% block comment %}{% endblock %}
   {% endif %}
