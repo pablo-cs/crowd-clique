@@ -9,7 +9,7 @@ db = SQLAlchemy()
 class User(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(20), unique=True, nullable=False)
-  username = db.Column(db.String(20), unique=True, nullable=False)
+  user_name = db.Column(db.String(20), unique=True, nullable=False)
   email = db.Column(db.String(120), unique=True, nullable=False)
   password = db.Column(db.String(60), nullable=False)
   pronouns =db.Column(db.String(60), nullable=False)
@@ -17,7 +17,7 @@ class User(db.Model):
 
 
   def __repr__(self):
-    return f"User('{self.username}', '{self.email}')"
+    return f"User('{self.user_name}', '{self.email}')"
 
 #table to store the comments for an event
 class CommentEvent(db.Model):
