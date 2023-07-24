@@ -1,0 +1,11 @@
+{% extends "entry.html" %}
+
+{% block inner_content %}
+
+  <div class="center btn-group" role="group" aria-label="User Options">
+    <a href="{{ url_for('login') }}" class="center logincontainer btn btn-primary">Login</a>
+    <a href="{{ url_for('signup') }}" class="center logincontainer btn btn-success">Signup</a>
+  </div>
+</div>
+
+{% endblock %}

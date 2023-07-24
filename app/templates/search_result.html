@@ -1,0 +1,25 @@
+{% extends "post_entry.html" %}
+{% block inner_content %}
+{% if search_results == None %}
+    <h2>Events Not Found</h2>
+  {% else %}
+    
+  <h2 class="event-header"> Your Events </h2>
+  <div class="event-container">
+    {% for event in search_results %}
+      <div class="event-card">
+        <form action="{{ url_for('event_comments') }}" method="POST">
+          <input type="hidden" name="event_id" value="{{ event['id'] }}">
+          <button type="submit" class="image-button">
+            <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
+            <div class="event-land-name">{{ event['name']}} 
+                <br> {{ event['date']}} 
+                <br> {{ event['venue']}}
+            </div>
+          </button>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endblock inner_content %}
