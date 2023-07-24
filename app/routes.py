@@ -59,10 +59,11 @@ def add_comment():
     db.session.add(comment)
     db.session.commit()
     form = CommentForm()
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     return render_template(
         'event_comments.html',event_details=event_details,
-        event_comments=event_comments,
+        event_comments=event_comments,attendees=attendees,
         form=form
     )
 def add_reply():
@@ -77,9 +78,10 @@ def add_reply():
     db.session.add(reply)
     db.session.commit()
     form = CommentForm()
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     return render_template(
-        'event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,
+        'event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,attendees=attendees,
         replies=comment_replies,
         form=form
     )
@@ -91,7 +93,7 @@ def event_comments():
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     form = CommentForm()
     attendees = Attendance.query.filter_by(event_id=event_id).all()
-    return render_template('event_comments.html', event_details=event_details,
+    return render_template('event_comments.html', event_details=event_details,attendees=attendees,
     event_comments=event_comments,attendees=attendees,form=form)
 
 def event_replies():
@@ -100,9 +102,10 @@ def event_replies():
     comment = CommentEvent.query.filter_by(id=comment_id).first()
     event_details = get_event_details(event_id)
     #query database for replies with that comment id
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     form = CommentForm()
-    return render_template('event_replies.html', event_details=event_details,comment_id=comment_id,
+    return render_template('event_replies.html', event_details=event_details,comment_id=comment_id,attendees=attendees,
     replies=comment_replies, form=form)
 
 
