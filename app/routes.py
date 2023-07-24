@@ -93,7 +93,7 @@ def event_comments():
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     form = CommentForm()
     attendees = Attendance.query.filter_by(event_id=event_id).all()
-    return render_template('event_comments.html', event_details=event_details,attendees=attendees,
+    return render_template('event_comments.html', event_details=event_details,
     event_comments=event_comments,attendees=attendees,form=form)
 
 def event_replies():
