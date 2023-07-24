@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="avatar-container">
+        <h1 class="cc-top">CROWD CLIQUE</h1>
         <img class="ava" src= "{{ url_for('static', filename=user.avatar) }}" alt="Avatar" >
     </div>
+    <div class="search-container"
     <form action="{{ url_for('search') }}" method="POST">
         <input type="text" name="search" placeholder="Search..." required>
         <button type="submit">Search</button>
     </form>
+    </div>
     {% block inner_content %}{% endblock %}
 
 {% endblock content %}
