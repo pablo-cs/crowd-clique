@@ -29,7 +29,7 @@ class CommentEvent(db.Model):
 
     #to check getting right info
     def __repr__(self):
-        return f"Player('{self.event_id}',{self.event_name},{self.user_name},{self.comment})"
+        return f"Player('{self.event_id}',{self.user_name},{self.comment})"
 
 #storing replies for a comment
 class Reply (db.Model):

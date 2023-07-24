@@ -67,7 +67,7 @@ def add_comment():
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     return render_template(
         'event_comments.html',event_details=event_details,
-        comments=event_comments,
+        event_comments=event_comments,
         form=form
     )
 
@@ -77,15 +77,16 @@ def add_reply():
     event_id = request.form.get('event_id')
     event_details = get_event_details(event_id)
     comment_id = request.form.get('comment_id')
+    comment = CommentEvent.query.filter_by(id=comment_id).first()
     #how are we getting comment id
-    reply= Reply(comment_id=comment_id,event_id=event_id, user_name=user_name, reply=reply)
+    reply = Reply(comment_id=comment_id,event_id=event_id, user_name=user_name, reply=reply)
     db.session.add(reply)
     db.session.commit()
     form = CommentForm()
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     return render_template(
-        'event_replies.html', event_details=event_details, comment_id=comment_id,
-        comment_replies=event_replies,
+        'event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,
+        replies=comment_replies,
         form=form
     )
 
@@ -102,9 +103,10 @@ def event_comments():
 def event_replies():
     event_id = request.form.get('event_id')
     comment_id = request.form.get('comment_id')
+    comment = CommentEvent.query.filter_by(id=comment_id).first()
     event_details = get_event_details(event_id)
     #query database for replies with that comment id
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     form = CommentForm()
-    return render_template('event_replies.html', event_details=event_details,comment_id=comment_id,
+    return render_template('event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,
     replies=comment_replies, form=form)
