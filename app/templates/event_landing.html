@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-  <img class="ava" src= "{{ url_for('static', filename=user.avatar) }}" alt="Avatar" >
+  <div class="avatar-container">
+    <img class="ava" src= "{{ url_for('static', filename=user.avatar) }}" alt="Avatar" >
+  </div>
     <form action="{{ url_for('search') }}" method="POST">
         <input type="text" name="search" placeholder="Search..." required>
         <button type="submit">Search</button>
