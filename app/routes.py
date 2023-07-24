@@ -147,7 +147,16 @@ def add_attendee():
             db.session.add(attendee)
             db.session.commit()
             
-    return redirect(url_for('event_comments'))
+    return redirect(url_for('event'))
 
 
-
+def remove_attendee():
+    """
+    Removes a attendee from table
+    """
+    user_name = session.get('user_name')
+    attendee = Attendance.query.filter_by(user_name=user_name).first()
+    if attendee:
+        db.session.delete(attendee)
+        db.session.commit()
+    return redirect(url_for('event'))
