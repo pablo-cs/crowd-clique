@@ -47,7 +47,8 @@ def signup():
 def event_landing():
     events = suggest_events()
     user = User.query.filter_by(user_name=session['user_name']).first()
-    return render_template('event_landing.html', your_events=[], suggested_events=events, user=user)
+    your_events = get_user_event('user')
+    return render_template('event_landing.html', your_events=your_events, suggested_events=events, user=user)
 
 def search():
     search_query = request.form.get('search')
@@ -150,4 +151,10 @@ def add_attendee():
     return redirect(url_for('event_comments'))
 
 
+def get_user_event(user_name):
+    user_events = Attendance.query.filter_by(user_name=user_name).all()
+    ret_events = []
+    for event in user_events:
+        ret_events.append(get_event_details(event))
+    return ret_events
 

@@ -52,11 +52,11 @@
           </form>
         {% endif %}
         <div class = "comment">
-        {% for attendee in attendees %}
         <h3>People Attending</h3>
-        <tr>
-          <th id="name">{{ attende.user_name }}</th>
-        </tr>
+        {% for attendee in attendees %}
+          <tr>
+            <th id="name">{{ attendee.user_name }}</th>
+          </tr>
         {% endfor%}
         {% block comment %}{% endblock %}
   {% endif %}
