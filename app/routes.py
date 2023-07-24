@@ -47,7 +47,8 @@ def signup():
 def event_landing():
     events = suggest_events()
     user = User.query.filter_by(user_name=session['user_name']).first()
-    return render_template('event_landing.html', your_events=[], suggested_events=events, user=user)
+    your_events = get_user_event(user.user_name)
+    return render_template('event_landing.html', your_events=your_events, suggested_events=events, user=user)
 
 def search():
     search_query = request.form.get('search')
@@ -56,9 +57,9 @@ def search():
         search_results = search_events(search_query)
         if len(search_results) > 0:
             return render_template(
-                    'search_result.html', search_results=search_results
+                    'search_result.html', search_results=search_results, user=user
                 )
-    return render_template('search_result.html', search_results=None)
+    return render_template('search_result.html', search_results=None, user=user)
 
 def add_comment():
     user_name = session.get('user_name')
@@ -71,11 +72,13 @@ def add_comment():
     db.session.add(comment)
     db.session.commit()
     form = CommentForm()
+    in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     return render_template(
         'event_comments.html',event_details=event_details,
-        event_comments=event_comments,user=user,
-        form=form
+        event_comments=event_comments,attendees=attendees,
+        form=form, in_db=in_db, user=user,
     )
 def add_reply():
     user_name = session.get('user_name')
@@ -86,18 +89,22 @@ def add_reply():
     comment_id = request.form.get('comment_id')
     comment = CommentEvent.query.filter_by(id=comment_id).first()
     #how are we getting comment id
+    in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
     reply = Reply(comment_id=comment_id,event_id=event_id, user_name=user_name, reply=reply)
     db.session.add(reply)
     db.session.commit()
     form = CommentForm()
+    
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     return render_template(
         'event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,
-        replies=comment_replies,user=user,
-        form=form
+        replies=comment_replies,user=user,attendees=attendees,
+        form=form, in_db=in_db
     )
 
 def event_comments():
+    user_name = session.get('user_name')
     event_id = request.form.get('event_id')
     user = User.query.filter_by(user_name=session['user_name']).first()
     event_details = get_event_details(event_id) #gets event object
@@ -105,21 +112,24 @@ def event_comments():
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     form = CommentForm()
     attendees = Attendance.query.filter_by(event_id=event_id).all()
+    in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
     return render_template('event_comments.html', event_details=event_details,
-    event_comments=event_comments,attendees=attendees,form=form, user=user)
-
+    event_comments=event_comments,attendees=attendees,form=form, user=user,in_db=in_db)
 
 def event_replies():
+    user_name = session.get('user_name')
     event_id = request.form.get('event_id')
     user = User.query.filter_by(user_name=session['user_name']).first()
     comment_id = request.form.get('comment_id')
     comment = CommentEvent.query.filter_by(id=comment_id).first()
     event_details = get_event_details(event_id)
     #query database for replies with that comment id
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
+    in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
     form = CommentForm()
-    return render_template('event_replies.html', event_details=event_details, comment=comment,comment_id=comment_id,
-    replies=comment_replies, form=form,user=user)
+    return render_template('event_replies.html', event_details=event_details,comment=comment,comment_id=comment_id,attendees=attendees,
+    replies=comment_replies, form=form, in_db=in_db, user=user)
 
 
 def add_attendee():
@@ -130,7 +140,7 @@ def add_attendee():
     event_id = request.form.get('event_id')
     if user_name:
         already_attending = Attendance.query.filter_by(
-                            user_name=user_name.first())
+                            user_name=user_name).first()
         if not already_attending:
             attendee = Attendance(
                 event_id=event_id, 
@@ -138,7 +148,25 @@ def add_attendee():
             db.session.add(attendee)
             db.session.commit()
             
-    return redirect(url_for('event_comments'))
+    return event_comments()
 
 
 
+def remove_attendee():
+    """
+    Removes a attendee from table
+    """
+    user_name = session.get('user_name')
+    event_id = request.form.get('event_id')
+    attendee = Attendance.query.filter_by(user_name=user_name, event_id=event_id).first()
+    if attendee:
+        db.session.delete(attendee)
+        db.session.commit()
+    return event_comments()
+
+def get_user_event(user_name):
+    user_events = Attendance.query.filter_by(user_name=user_name).all()
+    ret_events = []
+    for event in user_events:
+        ret_events.append(get_event_details(event.event_id))
+    return ret_events

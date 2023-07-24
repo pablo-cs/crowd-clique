@@ -11,14 +11,6 @@
         </button>
     </form>
     {% endfor %}
-        <div class = "comment">
-        {% for attende in attendees %}
-            <h3>People Attending</h3>
-            <tr>
-        <th id="name">{{ attende.user_name }}</th>
-            </tr>
-        </div>
-        {% endfor %}
     <div class="add-comment">
         <h3>Add a Comment</h3>
         <form id="comment-form" action="{{ url_for('add_comment') }}" method="POST">
