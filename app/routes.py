@@ -56,9 +56,9 @@ def search():
         search_results = search_events(search_query)
         if len(search_results) > 0:
             return render_template(
-                    'search_result.html', search_results=search_results
+                    'search_result.html', search_results=search_results, user=user
                 )
-    return render_template('search_result.html', search_results=None)
+    return render_template('search_result.html', search_results=None, user=user)
 
 def add_comment():
     user_name = session.get('user_name')
@@ -147,7 +147,7 @@ def add_attendee():
             db.session.add(attendee)
             db.session.commit()
             
-    return redirect(url_for('event'))
+    return redirect(url_for('event_comments'))
 
 
 def remove_attendee():
@@ -155,8 +155,9 @@ def remove_attendee():
     Removes a attendee from table
     """
     user_name = session.get('user_name')
-    attendee = Attendance.query.filter_by(user_name=user_name).first()
+    event_id = request.form.get('event_id')
+    attendee = Attendance.query.filter_by(user_name=user_name, event_id=event_id).first()
     if attendee:
         db.session.delete(attendee)
         db.session.commit()
-    return redirect(url_for('event'))
+    return redirect(url_for('event_comments'))
