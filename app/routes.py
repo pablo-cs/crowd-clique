@@ -6,7 +6,9 @@ from flask_sqlalchemy import SQLAlchemy
 from app.ticketmaster_api import search_events, suggest_events, get_event_details
 from datetime import datetime
 
-img = {'d': '../static/img/dog.jpg', 'c': '../static/img/cat.jpg','s': '../static/img/sunset.jpg'}
+
+img = {'d': '/img/dog.jpg', 'c': '/img/cat.jpg','s': '/img/sunset.jpg'}
+
 def home():
     return render_template('index.html')
 
@@ -19,11 +21,18 @@ def login():
         user=User.query.filter_by(username=form.username.data).first()
         if user:
             flash(f'Welcome,{form.username.data}!')
-            session['username'] = form.username.data
+            session['user_name'] = form.username.data
             return redirect(url_for('event_landing'))
         else:
             return redirect(url_for('err'))
+
     return render_template('login.html', title='Log In', form=form)
+
+
+##@app.route('/logout')
+def logout():
+   session.pop('user_name', None)
+   return redirect(url_for('home'))
 
 def signup():
     form = RegistrationForm()
@@ -37,7 +46,8 @@ def signup():
 
 def event_landing():
     events = suggest_events()
-    return render_template('event_landing.html', your_events=[], suggested_events=events)
+    user = User.query.filter_by(user_name=session['user_name']).first()
+    return render_template('event_landing.html', your_events=[], suggested_events=events, user=user)
 
 def search():
     search_query = request.form.get('search')

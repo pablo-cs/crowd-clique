@@ -1,6 +1,7 @@
 {% extends "entry.html" %}
 {% block inner_content %}
 
+{{ blah }}
 <form action="{{ url_for('login') }}" method="POST"> <!-- Replace "/login" with the actual login endpoint -->
    {{ form.hidden_tag() }}
     <fieldset class="form-group">

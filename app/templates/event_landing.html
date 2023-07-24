@@ -1,5 +1,12 @@
 {% extends "post_entry.html" %}
 {% block inner_content %}
+  <div class="avatar-container">
+    <img class="ava" src= "{{ url_for('static', filename=user.avatar) }}" alt="Avatar" >
+  </div>
+    <form action="{{ url_for('search') }}" method="POST">
+        <input type="text" name="search" placeholder="Search..." required>
+        <button type="submit">Search</button>
+    </form>
   <h2 class="event-header"> Your Events </h2>
   <div class="event-container">
     {% for event in your_events %}
