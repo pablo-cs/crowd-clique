@@ -89,8 +89,9 @@ def event_comments():
     #query the comments database for comments with that event id
     event_comments = CommentEvent.query.filter_by(event_id=event_id).all()
     form = CommentForm()
+    attendees = Attendance.query.filter_by(event_id=event_id).all()
     return render_template('event_comments.html', event_details=event_details,
-    event_comments=event_comments,form=form)
+    event_comments=event_comments,attendees=attendees,form=form)
 
 def event_replies():
     event_id = request.form.get('event_id')
@@ -101,4 +102,26 @@ def event_replies():
     form = CommentForm()
     return render_template('event_replies.html', event_details=event_details,comment_id=comment_id,
     replies=comment_replies, form=form)
+
+
+def add_attendee():
+    """
+    Adds user to Attendance
+    """
+    user_name = session.get('user_name')
+    event_id = request.form.get('event_id')
+    if user_name:
+        already_attending = Attendance.query.filter_by(
+                            user_name=user_name.first())
+        if not already_attending:
+            attendee = Attendance(
+                event_id=event_id, 
+                user_name=user_name)
+            db.session.add(attendee)
+            db.session.commit()
+            
+    return redirect(url_for('event_comments'))
+
+
+
 

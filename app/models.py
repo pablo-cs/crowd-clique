@@ -19,7 +19,7 @@ class User(db.Model):
   def __repr__(self):
     return f"User('{self.username}', '{self.email}')"
 
-#to store the comments for an event
+#table to store the comments for an event
 class CommentEvent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, unique=False, nullable = False)
@@ -39,4 +39,10 @@ class Reply (db.Model):
     user_name = db.Column(db.String(20), unique = False, nullable = False)
     reply = db.Column(db.String(255), unique=False, nullable = False)
     timestamp = db.Column(db.DateTime(), default=datetime.utcnow, index=True)
+
+class Attendance(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  event_id = db.Column(db.Integer, unique=False, nullable = False)
+  user_name = db.Column(db.String(20), unique = False, nullable = False)
+
 

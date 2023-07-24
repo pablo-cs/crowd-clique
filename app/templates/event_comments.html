@@ -1,6 +1,15 @@
+finalproject/crowd-clique/app/templates/event_replies.html
 {% extends "event.html" %}
 {% block comment %}
 {% for event_comment in event_comments %}
+
+    <div class = "comment">
+     {% for attende in attendees %}
+        <h3>People Attending</h3>
+        <tr>
+      <th id="name">{{ attende.user_name }}</th>
+        </tr>
+    </div>
 
     <div action="{{ url_for('event_replies') }}" class="comment">
         <form method="POST">
