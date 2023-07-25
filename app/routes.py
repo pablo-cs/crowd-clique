@@ -5,16 +5,11 @@ from app.forms import LoginForm, RegistrationForm, CommentForm
 from flask_sqlalchemy import SQLAlchemy
 from app.ticketmaster_api import search_events, suggest_events, get_event_details
 from datetime import datetime
-
-
 img = {'d': '/img/dog.jpg', 'c': '/img/cat.jpg','s': '/img/sunset.jpg'}
-
 def home():
     return render_template('index.html', entry=True)
-
 def err():
     return render_template('err.html',subtitle='Oh no!', text='The username and/or password entered is not correct. Please try again or sign up.',entry=True)
-
 def login():
     form = LoginForm()
     if form.validate_on_submit(): # checks if entries are valid
@@ -24,11 +19,9 @@ def login():
             return redirect(url_for('event_landing'))
         else:
             return redirect(url_for('err'))
-
     return render_template('login.html', title='Log In', form=form, entry=True)
-
-
 ##@app.route('/logout')
+
 def logout():
    session.pop('user_name', None)
    return redirect(url_for('home'))
@@ -79,6 +72,7 @@ def add_comment():
         event_comments=event_comments,attendees=attendees,
         form=form, in_db=in_db, user=user, entry=False
     )
+
 def add_reply():
     user_name = session.get('user_name')
     reply = request.form.get('reply')
@@ -93,7 +87,6 @@ def add_reply():
     db.session.add(reply)
     db.session.commit()
     form = CommentForm()
-    
     attendees = Attendance.query.filter_by(event_id=event_id).all()
     comment_replies = Reply.query.filter_by(comment_id=comment_id).all()
     return render_template(
@@ -101,7 +94,6 @@ def add_reply():
         replies=comment_replies,user=user,attendees=attendees,
         form=form, in_db=in_db, entry=False
     )
-
 def event_comments():
     user_name = session.get('user_name')
     event_id = request.form.get('event_id')
@@ -130,7 +122,6 @@ def event_replies():
     return render_template('event_replies.html', event_details=event_details,comment=comment,comment_id=comment_id,attendees=attendees,
     replies=comment_replies, form=form, in_db=in_db, user=user,entry=False)
 
-
 def add_attendee():
     """
     Adds user to Attendance
@@ -142,14 +133,11 @@ def add_attendee():
                             user_name=user_name).first()
         if not already_attending:
             attendee = Attendance(
-                event_id=event_id, 
+                event_id=event_id,
                 user_name=user_name)
             db.session.add(attendee)
             db.session.commit()
-            
     return event_comments()
-
-
 
 def remove_attendee():
     """

@@ -40,263 +40,22 @@ body {
 /* For a medium-sized image with a specific width */
 .event-image {
     max-width: 365px;
-    margin: 20px auto;
+    margin-top:-70px;
+    margin-bottom: 10px;
     background-color: rgb(151, 144, 144);
     border-radius: 20px;
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top:-150px;
 }
 
-
-.loginh1 {
-    text-align: center;
-    margin-bottom: 5px;
-    color: rgb(192, 183, 183);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-input {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.loginp {
-    text-align: center;
-    color:rgb(192, 183, 183)
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-/* Update the CSS for the event container to use flexbox */
-.event-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as needed to control the space between items */
-}
-
-.event-card {
-  flex-basis: calc(33.33% - 20px);
-  margin-bottom: 20px;
-  border-radius: 7px;
-  text-align: center;
-  
-  
-}
-
-.event-land-name{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgba(0, 0, 0, 0);
-  font-size: 2vw;
-}
-
-/* Add CSS for the image button */
-.image-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  /* Set the container to a fixed 16:9 aspect ratio using a padding hack */
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio (h/w * 100) */
-  overflow: hidden;
-}
-
-/* Set the image to take up the entirety of the container */
-.event-land-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%; /* Image will take the full width of the container */
-  height: 100%; /* Image will take the full height of the container */
-  object-fit: cover; /* Maintain aspect ratio while covering the container */
-  border-radius: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
-
-.event-card:hover .event-land-image {
-  filter: blur(10px);
-  box-shadow:black
-  transition: transform 0.5s ease
-  
-}
-.event-card:hover{
-  transform: scale(1.05);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.5s ease
-
-}
-
-.event-card:hover .event-land-name {
-  color: white;
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
-  
-}
-.ava{
-    width:10% ;
-    height:10% ;
-    border-radius:50% ;
-    border: 5px solid black ;
-    margin-top:-7.5%;
-    margin-bottom: 1%;
-    margin-left: 88% ; 
-}
-.avatar-container{
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between; /* Adjust as needed to control the space between items */
-}
-.search-container{
-  width:50% ;
-  height: 100% ;
-  margin-top: -7.5% ;
-}
-.cc-top{
-  font-size: 60px ;
-  margin-left: 57% ;
-  margin-top:2%;
-}
-User
-why is the event name overflowing into the comment container:
-{% extends "post_entry.html" %}
-{% block inner_content %}
-  {% if event_details == None %}
-    <h2>Event Not Found</h2>
-  {% else %}
-    <h1 class="event-name">{{ event_details['name']}}</h1>
-    <div class="event-info">
-      <div class="event-image-container">
-        {% if event_details['image'] %}
-          <img class="event-image" src="{{ event_details['image'] }}" alt="Event Image">
-        {% else %}
-          <p>No event image available.</p>
-        {% endif %}
-      </div>
-      <div class="event-info-content">
-        <h1>Event Information</h1>
-         <table>
-        <tr>
-        <th>Venue:</th>
-        <td id="venue">{{ event_details['venue'] }}</td>
-        </tr>
-        <tr>
-        <th>Date:</th>
-        <td id="date">{{ event_details['date'] }}</td>
-        </tr>
-        <th>Time:</th>
-        <td id="time">{{ event_details['time'] }}</td>
-        </tr>
-        </tr>
-        <th>Address:</th>
-        <td id="time">{{ event_details['address']|safe }}</td>
-        </tr>
-        <th>
-          <td>
-            {% if not in_db %}
-              <form action="{{ url_for('add_attendee') }}" method="POST">
-                <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-                <button type="submit">Attending?</button>
-              </form>
-            {% else %}
-              <form action="{{ url_for('remove_attendee') }}" method="POST">
-                <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-                <button type="submit">Attending</button>
-              </form>
-            {% endif %}
-          </td>
-        </th>
-         </table>
-      </div>
-        {% block comment %}{% endblock %}
-  {% endif %}
-{% endblock inner_content %}
-@font-face {
-  font-family: 'MotleyForces';
-  src: url('../fonts/MotleyForcesRegular.ttf') format('truetype');
-}
-
-body {
-    font-family: 'MotleyForces', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-}
-
-.container {
-    border-radius: 20px;
-    max-width: 400px;
-    margin-left: 100px auto;
-    margin-right: 100px auto;
-    margin-top: 100px auto;
-    background-color: rgb(0, 0, 0);
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.center{
-    display: flex;
-    justify-content: center;
-}
-
-.logincontainer{
-
-    max-width: 200px;
-    margin-top: 10px;
-    margin-right: 10px;
-    background-color: rgb(100, 94, 98);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-}
-/* For a medium-sized image with a specific width */
-.event-image {
+.crowd-image{
     max-width: 365px;
     margin: 20px auto;
     background-color: rgb(151, 144, 144);
     border-radius: 20px;
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top:-11%;
 }
-
 
 .loginh1 {
     text-align: center;
@@ -367,6 +126,10 @@ a:hover {
   
 }
 
+.event-header1{
+  margin-top: -95px;
+}
+
 .event-land-name{
   position: absolute;
   top: 50%;
@@ -419,8 +182,8 @@ a:hover {
   
 }
 .ava{
-    width:10% ;
-    height:10% ;
+    width:100px ;
+    height:100px ;
     border-radius:50% ;
     border: 5px solid black ;
     margin-top:-7.5%;
@@ -432,21 +195,17 @@ a:hover {
    flex-wrap: wrap;
    justify-content: space-between; /* Adjust as needed to control the space between items */
 }
-.search-container{
-  width:50% ;
-  height: 100% ;
-  margin-top: -7.5% ;
-}
+
 .cc-top{
   font-size: 60px ;
   margin-left: 57% ;
   margin-top:2%;
 }
 .event-name {
-  margin-left:45%;
-  margin-top:5%;
+  margin-left:390px;
+  margin-top:-60px;
   text-decoration: underline;
-  font-size:60px;
+  font-size:50px;
   text-align: center;
 }
 .event-info-content{
@@ -464,9 +223,23 @@ a:hover {
   margin-left:15px;
   margin-top: 10px;
 }
+
+.search-container{
+  width:300px ;
+  height: 90px;
+  margin-top: -100px ;
+} 
+
+.sbut {
+  width:100px;
+  height:42px;
+  margin-left:300px;
+  margin-top: -63px;
+}
+
 .comment-button{
-  width:95%;
-  height:50%;
+  width:600px;
+  height:50px;
   background-color: rgb(121, 121, 124);
   border:10%;
   color:black;
@@ -484,22 +257,24 @@ a:hover {
   font-size:30px;
 }
 .usr{
-  text-align: left;
+  text-align: right;
   font-size:15px;
 }
 .reply{
-  width:40%;
-  height:100%;
-  background-color: rgb(167, 167, 173);
+  width:560px;
+  height:40px;
+  background-color: rgb(181, 181, 184);
   border:10%;
   color:black;
+  margin-top:30px;
+  margin-left:8%;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
  .bigbox{
    width: 630px;
-   height: 630px;
-   margin-top:-400px;
-   margin-left: 600px;
+   height: 490px;
+   margin-top:-520px;
+   margin-left: 550px;
    background-color: #c5c9cc;
    border: 5px solid black;
    border-radius: 10px;
@@ -509,3 +284,11 @@ a:hover {
    display: none;
 }
 
+.bkgd{
+  position:static;
+  height:680px;
+            background-image: url('../intro_vid/crowd-clique.gif');
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+}
