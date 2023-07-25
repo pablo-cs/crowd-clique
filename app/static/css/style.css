@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'MotleyForces';
-  src: url('../fonts/MotleyForcesRegular.ttf') format('truetype');
+  font-family: 'AchieveBold';
+  src: url('../fonts/Achieve-Bold.otf') format('opentype');
 }
 
 body {
-    font-family: 'MotleyForces', sans-serif;
+    font-family: 'AchieveBold', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
@@ -123,7 +123,7 @@ a:hover {
   margin-bottom: 20px;
   border-radius: 7px;
   text-align: center;
-  
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .event-header1{
@@ -160,7 +160,7 @@ a:hover {
   height: 100%; /* Image will take the full height of the container */
   object-fit: cover; /* Maintain aspect ratio while covering the container */
   border-radius: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .event-card:hover .event-land-image {
