@@ -237,32 +237,36 @@ a:hover {
   margin-top: -63px;
 }
 
-.comment-button{
-  width:600px;
-  height:50px;
+
+.comment-button {
+  width: 100%;
+  height: auto; /* Allow the button to adjust its height based on content */
   background-color: rgb(121, 121, 124);
-  border:10%;
-  color:black;
-  margin-top:30px;
-  margin-left:2%;
+  border: 10%;
+  color: black;
+  margin-top: 30px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
 .comment-button:hover{
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.tx{
+.tx {
+  font-size: 20px; /* Adjust the font size for comments */
+  white-space: break-spaces; /* Allow long words to break and wrap */
+  word-break: break-word; /* Allow words to break if they don't fit in one line */
   text-align: left;
   text-indent: 2%;
-  font-size:30px;
 }
-.usr{
+.usr {
+  font-size: 15px;
   text-align: right;
-  font-size:15px;
 }
+
 .reply{
   width:560px;
-  height:40px;
+  height:auto;
   background-color: rgb(181, 181, 184);
   border:10%;
   color:black;
