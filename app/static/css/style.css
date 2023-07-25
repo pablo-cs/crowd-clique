@@ -48,6 +48,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+
 .crowd-image{
     max-width: 365px;
     margin: 20px auto;
@@ -114,7 +115,7 @@ a:hover {
 .event-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as needed to control the space between items */
+  justify-content: space-around; /* Adjust as needed to control the space between items */
 }
 
 .event-card {
@@ -122,7 +123,6 @@ a:hover {
   margin-bottom: 20px;
   border-radius: 7px;
   text-align: center;
-  
   
 }
 
