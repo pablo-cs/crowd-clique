@@ -10,10 +10,10 @@ from datetime import datetime
 img = {'d': '/img/dog.jpg', 'c': '/img/cat.jpg','s': '/img/sunset.jpg'}
 
 def home():
-    return render_template('index.html')
+    return render_template('index.html', entry=True)
 
 def err():
-    return render_template('err.html',subtitle='Oh no!', text='The username and/or password entered is not correct. Please try again or sign up.')
+    return render_template('err.html',subtitle='Oh no!', text='The username and/or password entered is not correct. Please try again or sign up.',entry=True)
 
 def login():
     form = LoginForm()
@@ -25,7 +25,7 @@ def login():
         else:
             return redirect(url_for('err'))
 
-    return render_template('login.html', title='Log In', form=form)
+    return render_template('login.html', title='Log In', form=form, entry=True)
 
 
 ##@app.route('/logout')
@@ -41,13 +41,13 @@ def signup():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('event_landing'))
-    return render_template('signup.html', title='Sign Up', form=form)
+    return render_template('signup.html', title='Sign Up', form=form, entry=True)
 
 def event_landing():
     events = suggest_events()
     user = User.query.filter_by(user_name=session['user_name']).first()
     your_events = get_user_event(user.user_name)
-    return render_template('event_landing.html', your_events=your_events, suggested_events=events, user=user)
+    return render_template('event_landing.html', your_events=your_events, suggested_events=events, user=user, entry=False)
 
 def search():
     search_query = request.form.get('search')
@@ -58,7 +58,7 @@ def search():
             return render_template(
                     'search_result.html', search_results=search_results, user=user
                 )
-    return render_template('search_result.html', search_results=None, user=user)
+    return render_template('search_result.html', search_results=None, user=user, entry=False)
 
 def add_comment():
     user_name = session.get('user_name')
@@ -77,7 +77,7 @@ def add_comment():
     return render_template(
         'event_comments.html',event_details=event_details,
         event_comments=event_comments,attendees=attendees,
-        form=form, in_db=in_db, user=user,
+        form=form, in_db=in_db, user=user, entry=False
     )
 def add_reply():
     user_name = session.get('user_name')
@@ -99,7 +99,7 @@ def add_reply():
     return render_template(
         'event_replies.html', event_details=event_details, comment=comment, comment_id=comment_id,
         replies=comment_replies,user=user,attendees=attendees,
-        form=form, in_db=in_db
+        form=form, in_db=in_db, entry=False
     )
 
 def event_comments():
@@ -113,7 +113,7 @@ def event_comments():
     attendees = Attendance.query.filter_by(event_id=event_id).all()
     in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
     return render_template('event_comments.html', event_details=event_details,
-    event_comments=event_comments,attendees=attendees,form=form, user=user,in_db=in_db)
+    event_comments=event_comments,attendees=attendees,form=form, user=user,in_db=in_db, entry=False)
 
 def event_replies():
     user_name = session.get('user_name')
@@ -128,7 +128,7 @@ def event_replies():
     in_db = bool(Attendance.query.filter_by(user_name=user_name).first())
     form = CommentForm()
     return render_template('event_replies.html', event_details=event_details,comment=comment,comment_id=comment_id,attendees=attendees,
-    replies=comment_replies, form=form, in_db=in_db, user=user)
+    replies=comment_replies, form=form, in_db=in_db, user=user,entry=False)
 
 
 def add_attendee():
