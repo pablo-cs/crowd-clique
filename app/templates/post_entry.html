@@ -1,8 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="avatar-container">
+    <div>
         <h1 class="cc-top">CROWD CLIQUE</h1>
-        <img class="ava" src="{{ url_for('static', filename=user.avatar) }}" alt="Avatar">
+    </div>
+    <div class="navbar-container">
+    <nav class="navbar">
+    <div class="navbar-brand">
+        <form action= "{{url_for('profile')}}" method="POST">
+        <button type ="submit" class= "navbar-buttons">
+      <img class="profile-pic" src= "{{ url_for('static', filename=user.avatar)}}" alt="Avatar">
+        </button>
+        </form>
+    </div>
+    <div class="navbar-buttons">
+      <button class="logout-btn">Logout</button>
+    </div>
+  </nav>
     </div>
     <div class="search-container">
         <form action="{{ url_for('search') }}" method="POST">

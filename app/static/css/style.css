@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'MotleyForces';
-  src: url('../fonts/MotleyForcesRegular.ttf') format('truetype');
+  font-family: 'AchieveBold';
+  src: url('../fonts/Achieve-Bold.otf') format('opentype');
 }
 
 body {
-    font-family: 'MotleyForces', sans-serif;
+    font-family: 'AchieveBold', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
@@ -48,6 +48,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+
 .crowd-image{
     max-width: 365px;
     margin: 20px auto;
@@ -82,6 +83,7 @@ input {
     font-size: 16px;
 }
 
+
 button {
     padding: 10px;
     background-color: #007bff;
@@ -114,7 +116,7 @@ a:hover {
 .event-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as needed to control the space between items */
+  justify-content: space-around; /* Adjust as needed to control the space between items */
 }
 
 .event-card {
@@ -122,12 +124,11 @@ a:hover {
   margin-bottom: 20px;
   border-radius: 7px;
   text-align: center;
-  
-  
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .event-header1{
-  margin-top: -95px;
+  margin-top: -40px;
 }
 
 .event-land-name{
@@ -160,7 +161,7 @@ a:hover {
   height: 100%; /* Image will take the full height of the container */
   object-fit: cover; /* Maintain aspect ratio while covering the container */
   border-radius: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .event-card:hover .event-land-image {
@@ -227,7 +228,7 @@ a:hover {
 .search-container{
   width:300px ;
   height: 90px;
-  margin-top: -100px ;
+  margin-top: -150px ;
 } 
 
 .sbut {
@@ -237,32 +238,36 @@ a:hover {
   margin-top: -63px;
 }
 
-.comment-button{
-  width:600px;
-  height:50px;
+
+.comment-button {
+  width: 100%;
+  height: auto; /* Allow the button to adjust its height based on content */
   background-color: rgb(121, 121, 124);
-  border:10%;
-  color:black;
-  margin-top:30px;
-  margin-left:2%;
+  border: 10%;
+  color: black;
+  margin-top: 30px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
 .comment-button:hover{
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.tx{
+.tx {
+  font-size: 20px; /* Adjust the font size for comments */
+  white-space: break-spaces; /* Allow long words to break and wrap */
+  word-break: break-word; /* Allow words to break if they don't fit in one line */
   text-align: left;
   text-indent: 2%;
-  font-size:30px;
 }
-.usr{
+.usr {
+  font-size: 15px;
   text-align: right;
-  font-size:15px;
 }
+
 .reply{
   width:560px;
-  height:40px;
+  height:auto;
   background-color: rgb(181, 181, 184);
   border:10%;
   color:black;
@@ -284,6 +289,50 @@ a:hover {
    display: none;
 }
 
+.navbar-container {
+  width: 50%;
+  margin-left: auto;
+}
+
+.navbar-buttons {
+  margin-left: 10px;
+}
+.navbar {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 10px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.logout-btn {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #ddd;
+}
+
+
 .bkgd{
   position:static;
   height:680px;
@@ -291,4 +340,16 @@ a:hover {
             background-position:center;
             background-repeat: no-repeat;
             background-size: cover;
+}
+
+.avatar-button{
+    padding: 0px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 50px;
+    transition: background-color 0.3s;
+
 }
