@@ -171,8 +171,9 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0);
-  font-size: 2vw;
+  font-size: 4vw;
 }
+
 
 /* Add CSS for the image button */
 .image-button {
@@ -204,6 +205,7 @@ a:hover {
   transition: transform 0.5s ease
   
 }
+
 .event-card:hover{
   transform: scale(1.05);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
@@ -233,8 +235,8 @@ a:hover {
 
 .cc-top{
   font-size: 60px ;
-  margin-left: 57% ;
-  margin-top:-10px;
+  margin-left: 34% ;
+  margin-top:20px;
 }
 .event-name {
   margin-left:390px;
@@ -261,7 +263,7 @@ a:hover {
 .search-container{
   width:300px ;
   height: 90px;
-  margin-top: -90px ;
+  margin-top: -60px ;
 } 
 
 .sbut {
@@ -332,14 +334,14 @@ a:hover {
   margin-top: -7px;
 }
 .navbar {
-  background-color: #333;
+  background-color:transparent;
   color: #fff;
   display: flex;
   justify-content: space-between;
-  width:530px;
+  width:200px;
   height:50px;
-  margin-left:15%;
-  margin-top:-2%;
+  margin-left:400px;
+  margin-top:-40px;
   
 }
 
@@ -349,11 +351,11 @@ a:hover {
 }
 
 .profile-pic {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  margin-left:-49%;
-  margin-top: -50%;
+  margin-left:-100%;
+  margin-top: -42px;
   
 }
 
@@ -361,17 +363,19 @@ a:hover {
   width:40px;
   height:40px;
   border-radius: 50%;
+  margin-left: 20px;
 }
 
 .logout-btn {
   background-color: #fff;
   color: #333;
-  border: none;
+  border: 3px solid black;
   padding: 8px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-left:-15%;
+  margin-top: -20px;
 }
 
 .logout-btn:hover {
