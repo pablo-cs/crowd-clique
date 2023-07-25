@@ -1,10 +1,9 @@
-{% extends "entry.html" %}
+{% extends "entry2.html" %}
 {% block inner_content %}
 <form method="POST" action="">
     {{ form.hidden_tag() }}
-    <fieldset class="form-group">
+    <fieldset class="form-group-text" id="signup">
         <div class="form-group">
-            {{ form.name.label(class="form-control-label") }}
             {% if form.name.errors %}
                 {{ form.name(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -13,11 +12,10 @@
                     {% endfor %}
                 </div>
             {% else %}
-                {{ form.name(class="form-control form-control-lg") }}
+                {{ form.name(class="form-control form-control-lg", placeholder="Name") }}
             {% endif %}
         </div>
         <div class="form-group">
-            {{ form.username.label(class="form-control-label") }}
             {% if form.username.errors %}
                 {{ form.username(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -26,11 +24,10 @@
                     {% endfor %}
                 </div>
             {% else %}
-                {{ form.username(class="form-control form-control-lg") }}
+                {{ form.username(class="form-control form-control-lg", placeholder="Username") }}
             {% endif %}
         </div>
         <div class="form-group">
-            {{ form.email.label(class="form-control-label") }}
             {% if form.email.errors %}
                 {{ form.email(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -39,11 +36,10 @@
                     {% endfor %}
                 </div>
             {% else %}
-                {{ form.email(class="form-control form-control-lg") }}
+                {{ form.email(class="form-control form-control-lg",placeholder="Email") }}
             {% endif %}
         </div>
         <div class="form-group">
-            {{ form.password.label(class="form-control-label") }}
             {% if form.password.errors %}
                 {{ form.password(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -52,11 +48,10 @@
                     {% endfor %}
                 </div>
             {% else %}
-                {{ form.password(class="form-control form-control-lg") }}
+                {{ form.password(class="form-control form-control-lg",placeholder="Password") }}
             {% endif %}
         </div>
         <div class="form-group">
-            {{ form.confirm_password.label(class="form-control-label") }}
             {% if form.confirm_password.errors %}
                 {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -65,11 +60,10 @@
                     {% endfor %}
                 </div>
             {% else %}
-                {{ form.confirm_password(class="form-control form-control-lg") }}
+                {{ form.confirm_password(class="form-control form-control-lg",placeholder="Confirm Password") }}
             {% endif %}
         </div>
-        <div class="form-group">
-            {{ form.pronouns.label(class="form-control-label") }}
+        <div class="form-group" id= "pronouns">
             {% if form.pronouns.errors %}
                 {{ form.pronouns(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -82,7 +76,6 @@
             {% endif %}
         </div>
         <div class="form-group">
-            {{ form.avatar.label(class="form-control-label") }}
             {% if form.avatar.errors %}
                 {{ form.avatar(class="form-control form-control-lg is-invalid") }}
                 <div class="invalid-feedback">
@@ -95,7 +88,7 @@
             {% endif %}
         </div>
     </fieldset>
-    <div class="form-group">
+    <div class="form-group-btn" id="signup-btn">
         {{ form.submit(class="btn btn-outline-info") }}
     </div>
 </form>

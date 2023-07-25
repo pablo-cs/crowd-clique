@@ -12,8 +12,8 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
-    pronouns = SelectField(u'Pronouns', choices=[('s', 'She/Her'), ('h', 'He/Him'), ('t', 'They/Their')])
-    avatar = SelectField(u'Choose Your Avatar', choices=[('d', 'Dog'), ('c', 'Cat'), ('s', 'Sunset')])
+    pronouns = SelectField('Pronouns', choices=[(None, 'Pronouns'),('s', 'She/Her'), ('h', 'He/Him'), ('t', 'They/Their')])
+    avatar = SelectField(u'Choose Your Avatar', choices=[(None,'Avatar'),('d', 'Dog'), ('c', 'Cat'), ('s', 'Sunset')])
     submit = SubmitField('Sign Up')
 
 

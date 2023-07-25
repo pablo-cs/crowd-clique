@@ -1,30 +1,32 @@
 {% extends "event.html" %}
 {% block comment %}
-<div class="comment">
-    <form action="{{ url_for('event_comments') }}" method="POST">
-        <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-        <button type="submit" class="comment-button">
-            <h3>{{ comment.comment }}</h3>
-            <h3>{{ comment.user_name }}</h3>
-            <h3>{{ comment.timestamp }}</h3>
-        </button>
-    </form>
-</div>
-{% for reply in replies %}
-    <div class="reply">
-        <h3>{{ reply.reply }}</h3>
-        <h3>{{ reply.user_name }}</h3>
-        <h3>{{ reply.timestamp }}</h3>
+<div class="bigbox">
+    <div class="comment">
+        <form action="{{ url_for('event_comments') }}" method="POST">
+            <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
+            <button type="submit" class="comment-button">
+                <h3 class="tx">{{ comment.comment }}</h3>
+                <h3 class="usr"> • {{ comment.user_name }},{{ comment.timestamp }}</h3>
+            </button>
+        </form>
     </div>
-{% endfor %}
-  <h3>Add a Reply</h3>
-  <form id="reply-form" action="{{ url_for('add_reply') }}" method="POST">
-    {{ form.csrf_token }}
-    <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
-    <input type="hidden" name="comment_id" value="{{ comment_id }}">
-    <label for="comment-input">Comment:</label>
-    <textarea id="reply-input" name="reply" rows="4" cols="50" required></textarea>
-    <br>
-    <button type="submit">Submit Comment</button>
-  </form>
+    {% for reply in replies %}
+        <div class="reply">
+            <h3 class="tx">{{ reply.reply }}</h3>
+            <h3 class="usr"> • {{ reply.user_name }}, {{ reply.timestamp }}</h3>
+        </div>
+    {% endfor %}
+    <div class="add-comment">
+    <h3>Add a Reply</h3>
+    <form id="reply-form" action="{{ url_for('add_reply') }}" method="POST">
+        {{ form.csrf_token }}
+        <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
+        <input type="hidden" name="comment_id" value="{{ comment_id }}">
+        <label for="comment-input">Reply:</label>
+        <textarea id="reply-input" name="reply" rows="4" cols="50" required></textarea>
+        <br>
+        <button type="submit">Submit Reply</button>
+    </form>
+    </div>
+</div>
 {% endblock comment %}

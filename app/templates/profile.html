@@ -1,0 +1,26 @@
+{% extends "post_entry.html" %}
+{% block inner_content %}
+
+<h2 class="event-header"> Your Events </h2>
+  <div class="event-container">
+    {% if upcoming_events%}
+        {% for event in upcoming_events %}
+            <div class="event-card">
+            <form action="{{ url_for('event_comments') }}" method="POST">
+            <input type="hidden" name="event_id" value="{{ event['id'] }}">
+            <button type="submit" class="image-button">
+            <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
+            <div class="event-land-name">Enter the Clique</div>
+          </button>
+          <div class="event-card-body">
+             <h5 class="card-title">{{ event['name']}}</h5>
+             <h5 class="card-title"> {{ event['date']}}</h5>
+          </div>
+            </form>
+            </div>
+        {% endfor %}
+    {% endif %}
+  </div>
+{% endblock inner_content %}
+
+ 

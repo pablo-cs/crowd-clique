@@ -1,18 +1,20 @@
 {% extends "post_entry.html" %}
 {% block inner_content %}
-  <h2 class="event-header"> Your Events </h2>
+
+<h2 class="event-header1"> Your Events </h2>
   <div class="event-container">
     {% for event in your_events %}
-      <div action="{{ url_for('event_comments') }}" class="event-card">
-        <form method="POST">
+      <div class="event-card">
+        <form action="{{ url_for('event_comments') }}" method="POST">
           <input type="hidden" name="event_id" value="{{ event['id'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
-            <div class="event-land-name">{{ event['name']}} 
-                <br> {{ event['date']}} 
-                <br> {{ event['venue']}}
-            </div>
+            <div class="event-land-name">Enter the Clique</div>
           </button>
+          <div class="event-card-body">
+             <h5 class="card-title">{{ event['name']}}</h5>
+             <h5 class="card-title"> {{ event['date']}}</h5>
+          </div>
         </form>
       </div>
     {% endfor %}
@@ -26,12 +28,12 @@
           <input type="hidden" name="event_id" value="{{ event['id'] }}">
           <button type="submit" class="image-button">
             <img class="event-land-image" src="{{ event['image'] }}" alt="Event Image">
-            <div class="event-land-name">
-                {{ event['name']}} 
-                <br> {{ event['date']}} 
-                <br> {{ event['venue']}}
-            </div>
+            <div class="event-land-name">Enter the Clique</div>
           </button>
+          <div class="event-card-body">
+             <h5 class="card-title">{{ event['name']}}</h5>
+             <h5 class="card-title"> {{ event['date']}}</h5>
+          </div>
         </form>
       </div>
     {% endfor %}

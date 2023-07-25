@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'MotleyForces';
-  src: url('../fonts/MotleyForcesRegular.ttf') format('truetype');
+  font-family: 'AchieveBold';
+  src: url('../fonts/Achieve-Bold.otf') format('opentype');
 }
 
 body {
-    font-family: 'MotleyForces', sans-serif;
+    font-family: 'AchieveBold', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
@@ -31,14 +31,59 @@ body {
     max-width: 200px;
     margin-top: 10px;
     margin-right: 10px;
-    background-color: rgb(100, 94, 98);
+    background-color: rgb(10, 10, 10);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
 }
+.form-group-text{
+  width:400px;
+  padding:20px;
+  margin-left:440px;
+  margin-top: -40px;
+  background-color: rgb(7, 7, 7);
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+}
+#signup{
+  margin-left:440px;
+}
+#signup-btn{
+  margin-top:-18px;
+  margin-left:440px;
+  height:70px;
+}
+}
+#sign-up-pg{
+  margin-left: 432px;
+}
+#pronouns{
+  margin-bottom: 20px;
+}
+.form-group-btn{
+  width:400px;
+  padding:10px;
+  margin-left:440px;
+  margin-top: -40px;
+  background-color: rgb(7, 7, 7);
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+  text-align: center;
+}
 /* For a medium-sized image with a specific width */
 .event-image {
+    max-width: 365px;
+    margin-top:-70px;
+    margin-bottom: 10px;
+    background-color: rgb(151, 144, 144);
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.crowd-image{
     max-width: 365px;
     margin: 20px auto;
     background-color: rgb(151, 144, 144);
@@ -46,7 +91,6 @@ body {
     padding: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 
 .loginh1 {
     text-align: center;
@@ -72,6 +116,7 @@ input {
     border-radius: 4px;
     font-size: 16px;
 }
+
 
 button {
     padding: 10px;
@@ -105,7 +150,7 @@ a:hover {
 .event-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; /* Adjust as needed to control the space between items */
+  justify-content: space-around; /* Adjust as needed to control the space between items */
 }
 
 .event-card {
@@ -113,8 +158,11 @@ a:hover {
   margin-bottom: 20px;
   border-radius: 7px;
   text-align: center;
-  
-  
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.event-header1{
+  margin-top: -40px;
 }
 
 .event-land-name{
@@ -123,8 +171,9 @@ a:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0);
-  font-size: 2vw;
+  font-size: 4vw;
 }
+
 
 /* Add CSS for the image button */
 .image-button {
@@ -147,7 +196,7 @@ a:hover {
   height: 100%; /* Image will take the full height of the container */
   object-fit: cover; /* Maintain aspect ratio while covering the container */
   border-radius: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .event-card:hover .event-land-image {
@@ -156,6 +205,7 @@ a:hover {
   transition: transform 0.5s ease
   
 }
+
 .event-card:hover{
   transform: scale(1.05);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
@@ -169,13 +219,187 @@ a:hover {
   
 }
 .ava{
-    width:10% ;
-    height:10% ;
-    border-radius:100% ;
-    margin-top:-3% ;
+    width:100px ;
+    height:100px ;
+    border-radius:50% ;
+    border: 5px solid black ;
+    margin-top:-7.5%;
+    margin-bottom: 1%;
+    margin-left: 88% ; 
 }
 .avatar-container{
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between; /* Adjust as needed to control the space between items */
+}
+
+.cc-top{
+  font-size: 60px ;
+  margin-left: 34% ;
+  margin-top:20px;
+}
+.event-name {
+  margin-left:390px;
+  margin-top:-10px;
+  text-decoration: underline;
+  font-size:50px;
+  text-align: center;
+}
+.event-info-content{
+  width:30%;
+  height:370px;
+  background-color:rgb(181, 177, 177) ;
+  text-align: center;
+  border: 5px solid black ;
+  border-radius: 10%;
+}
+
+.add-comment{
+  width:95%;
+  margin-left:15px;
+  margin-top: 10px;
+}
+
+.search-container{
+  width:300px ;
+  height: 90px;
+  margin-top: -60px ;
+} 
+
+.sbut {
+  width:100px;
+  height:42px;
+  margin-left:300px;
+  margin-top: -63px;
+}
+
+
+.comment-button {
+  width: 100%;
+  height: auto; /* Allow the button to adjust its height based on content */
+  background-color: rgb(121, 121, 124);
+  border: 10%;
+  color: black;
+  margin-top: 30px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.comment-button:hover{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tx {
+  font-size: 20px; /* Adjust the font size for comments */
+  white-space: break-spaces; /* Allow long words to break and wrap */
+  word-break: break-word; /* Allow words to break if they don't fit in one line */
+  text-align: left;
+  text-indent: 2%;
+}
+.usr {
+  font-size: 15px;
+  text-align: right;
+}
+
+.reply{
+  width:560px;
+  height:auto;
+  background-color: rgb(181, 181, 184);
+  border:10%;
+  color:black;
+  margin-top:30px;
+  margin-left:8%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+ .bigbox{
+   width: 650px;
+   height: 490px;
+   margin-top:-490px;
+   margin-left: 510px;
+   background-color: #c5c9cc;
+   border: 5px solid black;
+   border-radius: 10px;
+   overflow-y:scroll ;
+ }
+ .bigbox::-webkit-scrollbar {
+   display: none;
+}
+
+.navbar-container {
+  width: 50%;
+  margin-left: auto;
+}
+
+.navbar-buttons {
+  margin-left: 10px;
+  margin-top: -7px;
+}
+.navbar {
+  background-color:transparent;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  width:200px;
+  height:50px;
+  margin-left:400px;
+  margin-top:-40px;
+  
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-left:-100%;
+  margin-top: -42px;
+  
+}
+
+#prof_btn{
+  width:40px;
+  height:40px;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+.logout-btn {
+  background-color: #fff;
+  color: #333;
+  border: 3px solid black;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left:-15%;
+  margin-top: -20px;
+}
+
+.logout-btn:hover {
+  background-color: #ddd;
+}
+
+
+.bkgd{
+  position:static;
+  height:680px;
+            background-image: url('../intro_vid/crowd-clique.gif');
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: cover;
+}
+
+.avatar-button{
+    padding: 0px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 50px;
+    transition: background-color 0.3s;
+
 }
