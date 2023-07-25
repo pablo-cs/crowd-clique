@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_behind_proxy import FlaskBehindProxy
 from app.models import db
-from app.routes import login, signup, home, event_landing, search, err, add_comment, add_reply, event_comments, event_replies,add_attendee, remove_attendee, profile
+from app.routes import login, signup, home, event_landing, search, err, add_comment, add_reply, event_comments, event_replies,add_attendee, remove_attendee, profile, logout
 
 
 app = Flask(__name__, static_folder="app/static", template_folder="app/templates")
@@ -26,6 +26,6 @@ app.route('/event_replies',methods=['GET', 'POST'])(event_replies)
 app.route('/add_attendee',methods=['GET', 'POST'])(add_attendee)
 app.route('/remove_attendee',methods=['GET', 'POST'])(remove_attendee)
 app.route('/profile',methods=['POST'])(profile)
-
+app.route('/logout')(logout)
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

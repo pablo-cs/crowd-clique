@@ -23,7 +23,7 @@ def login():
 ##@app.route('/logout')
 
 def logout():
-   session.pop('user_name', None)
+   session.pop('username', None)
    return redirect(url_for('home'))
 
 def signup():

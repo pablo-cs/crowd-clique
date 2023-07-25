@@ -200,20 +200,19 @@ a:hover {
 .cc-top{
   font-size: 60px ;
   margin-left: 57% ;
-  margin-top:2%;
+  margin-top:-10px;
 }
 .event-name {
   margin-left:390px;
-  margin-top:-60px;
+  margin-top:-10px;
   text-decoration: underline;
   font-size:50px;
   text-align: center;
 }
 .event-info-content{
-  width:20%;
-  height:100%;
+  width:30%;
+  height:370px;
   background-color:rgb(181, 177, 177) ;
-  margin-left:5%;
   text-align: center;
   border: 5px solid black ;
   border-radius: 10%;
@@ -228,7 +227,7 @@ a:hover {
 .search-container{
   width:300px ;
   height: 90px;
-  margin-top: -150px ;
+  margin-top: -90px ;
 } 
 
 .sbut {
@@ -276,10 +275,10 @@ a:hover {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
  .bigbox{
-   width: 630px;
+   width: 650px;
    height: 490px;
-   margin-top:-520px;
-   margin-left: 550px;
+   margin-top:-490px;
+   margin-left: 510px;
    background-color: #c5c9cc;
    border: 5px solid black;
    border-radius: 10px;
@@ -296,14 +295,18 @@ a:hover {
 
 .navbar-buttons {
   margin-left: 10px;
+  margin-top: -7px;
 }
 .navbar {
   background-color: #333;
   color: #fff;
   display: flex;
   justify-content: space-between;
-  align-items:center;
-  padding: 10px;
+  width:530px;
+  height:50px;
+  margin-left:15%;
+  margin-top:-2%;
+  
 }
 
 .navbar-brand {
@@ -312,20 +315,29 @@ a:hover {
 }
 
 .profile-pic {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-left:-49%;
+  margin-top: -50%;
+  
+}
+
+#prof_btn{
+  width:40px;
+  height:40px;
+  border-radius: 50%;
 }
 
 .logout-btn {
   background-color: #fff;
   color: #333;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left:-15%;
 }
 
 .logout-btn:hover {
