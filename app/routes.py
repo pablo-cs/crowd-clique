@@ -49,6 +49,13 @@ def event_landing():
     your_events = get_user_event(user.user_name)
     return render_template('event_landing.html', your_events=your_events, suggested_events=events, user=user)
 
+def profile():
+    user = User.query.filter_by(user_name=session['user_name']).first()
+    upcoming_events = get_user_event(user.user_name)
+    return render_template('profile.html',upcoming_events=upcoming_events,user=user)
+
+
+
 def search():
     search_query = request.form.get('search')
     user = User.query.filter_by(user_name=session['user_name']).first()
