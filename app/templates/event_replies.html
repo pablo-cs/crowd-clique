@@ -1,5 +1,6 @@
 {% extends "event.html" %}
 {% block comment %}
+<div class="bigbox">
     <div class="comment">
         <form action="{{ url_for('event_comments') }}" method="POST">
             <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
@@ -21,10 +22,11 @@
         {{ form.csrf_token }}
         <input type="hidden" name="event_id" value="{{ event_details['id'] }}">
         <input type="hidden" name="comment_id" value="{{ comment_id }}">
-        <label for="comment-input">Comment:</label>
+        <label for="comment-input">Reply:</label>
         <textarea id="reply-input" name="reply" rows="4" cols="50" required></textarea>
         <br>
-        <button type="submit">Submit Comment</button>
+        <button type="submit">Submit Reply</button>
     </form>
     </div>
+</div>
 {% endblock comment %}
