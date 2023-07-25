@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="bkgd">
+    <div class="container" id="sign-up-pg">
+        <h1 class="loginh1">Crowd-Clique</h1>
+        <p class="loginp"> Make meaningful connections anywhere</p>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+       <div class="alert alert-{{ category }}">
+         {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+    {% block inner_content %}{% endblock %}
+</div>
+{% endblock content %}

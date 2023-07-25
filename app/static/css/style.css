@@ -31,11 +31,45 @@ body {
     max-width: 200px;
     margin-top: 10px;
     margin-right: 10px;
-    background-color: rgb(100, 94, 98);
+    background-color: rgb(10, 10, 10);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
+}
+.form-group-text{
+  width:400px;
+  padding:20px;
+  margin-left:440px;
+  margin-top: -40px;
+  background-color: rgb(7, 7, 7);
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+}
+#signup{
+  margin-left:440px;
+}
+#signup-btn{
+  margin-top:-18px;
+  margin-left:440px;
+  height:70px;
+}
+}
+#sign-up-pg{
+  margin-left: 432px;
+}
+#pronouns{
+  margin-bottom: 20px;
+}
+.form-group-btn{
+  width:400px;
+  padding:10px;
+  margin-left:440px;
+  margin-top: -40px;
+  background-color: rgb(7, 7, 7);
+  border-bottom-left-radius:20px;
+  border-bottom-right-radius:20px;
+  text-align: center;
 }
 /* For a medium-sized image with a specific width */
 .event-image {
