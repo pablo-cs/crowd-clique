@@ -32,11 +32,8 @@ def get_event_details(event_id):
             image_urls = []
             for image in event_data['images']:
                 image_urls.append(image['url'])
-            print(image_urls)
-            print(find_highest_resolution_image(image_urls))
             event_obj['image'] = find_highest_resolution_image(image_urls)
             
-            print(event_obj)
         except:
             print('Error')
             event_obj = None
@@ -74,7 +71,6 @@ def suggest_events():
 
     response = requests.get(BASE_SUGGEST_URL, params=query_params)
     events  = []
-    print(response.status_code)
     if response.status_code == 200:
         data = response.json()
         events_data = data["_embedded"]["events"]
@@ -111,7 +107,6 @@ def get_image_resolution(image_url):
         response = session.get(image_url, stream=True)
         response.raise_for_status()  # Raise an exception for invalid URLs or non-200 status codes
         image = Image.open(response.raw)
-        print(image.size)
         return image.size
     except Exception as e:
         print(f"Error downloading image from URL: {image_url}. Error: {e}")

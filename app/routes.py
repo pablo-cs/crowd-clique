@@ -129,7 +129,7 @@ def add_attendee():
     user_name = session.get('user_name')
     event_id = request.form.get('event_id')
     if user_name:
-        already_attending = Attendance.query.filter_by(
+        already_attending = Attendance.query.filter_by(event_id=event_id,
                             user_name=user_name).first()
         if not already_attending:
             attendee = Attendance(
