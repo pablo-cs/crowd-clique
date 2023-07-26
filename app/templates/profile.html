@@ -1,7 +1,16 @@
 {% extends "post_entry.html" %}
 {% block inner_content %}
 
-<h2 class="event-header"> Your Events </h2>
+
+<div class="profnavbar">
+  <div class="profnavbaritems">
+  <h3 class="mainprofile-usr"> {{ user.name }}</h3>
+  <img class="mainprofile-pic" src= "{{ url_for('static', filename=user.avatar)}}" alt="Avatar">
+  <h3 class="mainprofile-usr"> {{ user.user_name }}</h3>
+  </div>
+</div>
+
+<h2 class="event-profilehead"> Your Events </h2>
   <div class="event-container">
     {% if upcoming_events%}
         {% for event in upcoming_events %}
@@ -21,6 +30,7 @@
         {% endfor %}
     {% endif %}
   </div>
+</div>
 {% endblock inner_content %}
 
  

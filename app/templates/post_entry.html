@@ -7,7 +7,7 @@
     <nav class="navbar">
     <div class="navbar-brand">
         <form action= "{{url_for('profile')}}" method="POST">
-        <button type ="submit" class= "navbar-buttons" id="prof_btn">
+        <button type ="submit" id="prof_btn">
       <img class="profile-pic" src= "{{ url_for('static', filename=user.avatar)}}" alt="Avatar">
         </button>
         </form>
@@ -15,6 +15,9 @@
     <div class="navbar-buttons">
         <form action= "{{url_for('logout')}}">
         <button class="logout-btn" type="submit" >Logout</button>
+        </form>
+        <form action= "{{url_for('event_landing')}}">
+        <button class="logout-btn" type="submit" >Home</button>
         </form>
     </div>
   </nav>
