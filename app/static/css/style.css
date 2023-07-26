@@ -440,7 +440,7 @@ a:hover {
 
 .bkgd{
   position:static;
-  height:680px;
+  height:100vh;
             background-image: url('../intro_vid/crowd-clique.gif');
             background-position:center;
             background-repeat: no-repeat;
