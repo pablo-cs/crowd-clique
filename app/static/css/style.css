@@ -40,18 +40,21 @@ body {
 .form-group-text{
   width:400px;
   padding:20px;
-  margin-left:440px;
+  margin-left:auto;
+  margin-right: auto;
   margin-top: -40px;
   background-color: rgb(7, 7, 7);
   border-bottom-left-radius:20px;
   border-bottom-right-radius:20px;
 }
 #signup{
-  margin-left:440px;
+  margin-left:auto;
+  margin-right: auto;
 }
 #signup-btn{
   margin-top:-18px;
-  margin-left:440px;
+  margin-left:auto;
+  margin-right:auto;
   height:70px;
 }
 }
@@ -64,7 +67,8 @@ body {
 .form-group-btn{
   width:400px;
   padding:10px;
-  margin-left:440px;
+  margin-left:auto;
+  margin-right: auto;
   margin-top: -40px;
   background-color: rgb(7, 7, 7);
   border-bottom-left-radius:20px;
