@@ -53,11 +53,16 @@
             <td>
               <table>
                 <tbody>
-                  {% for attendee in attendees %}
+                    {% for attendee in attendees %}
                     <tr>
-                      <td id="name">{{ attendee.user_name }}</td>
+                        <td>
+                        <form action="{{ url_for('profile') }}" method="POST">
+                            <input type="hidden" name="user_name" value="{{ attendee.user_name }}">
+                            <button type="submit" class="link-button">{{ attendee.user_name }}</button>
+                        </form>
+                        </td>
                     </tr>
-                  {% endfor %}
+                    {% endfor %}
                 </tbody>
               </table>
             </td>

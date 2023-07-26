@@ -43,9 +43,11 @@ def event_landing():
     return render_template('event_landing.html', your_events=your_events, suggested_events=events, user=user, entry=False)
 
 def profile():
-    user = User.query.filter_by(user_name=session['user_name']).first()
-    upcoming_events = get_user_event(user.user_name)
-    return render_template('profile.html',upcoming_events=upcoming_events,user=user)
+    user_name = request.form.get('user_name')
+    prof_user = User.query.filter_by(user_name=user_name).first()
+    curr_user = User.query.filter_by(user_name=session['user_name']).first()
+    upcoming_events = get_user_event(prof_user.user_name)
+    return render_template('profile.html', upcoming_events=upcoming_events, prof_user=prof_user, user=curr_user)
 
 
 

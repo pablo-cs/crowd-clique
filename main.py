@@ -25,7 +25,7 @@ app.route('/event_comments',methods=['GET', 'POST'])(event_comments)
 app.route('/event_replies',methods=['GET', 'POST'])(event_replies)
 app.route('/add_attendee',methods=['GET', 'POST'])(add_attendee)
 app.route('/remove_attendee',methods=['GET', 'POST'])(remove_attendee)
-app.route('/profile',methods=['POST'])(profile)
+app.route('/profile',methods=['GET', 'POST'])(profile)
 app.route('/logout')(logout)
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

@@ -67,7 +67,7 @@ def search_events(query):
 def suggest_events():
     query_params = {
         "apikey": API_KEY,
-        "keyword": 'august'
+        "keyword": '2023'
     }
 
     response = requests.get(BASE_SUGGEST_URL, params=query_params)

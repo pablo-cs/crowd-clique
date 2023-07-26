@@ -12,7 +12,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
-    pronouns = SelectField('Pronouns', choices=[(None, 'Pronouns'),('s', 'She/Her'), ('h', 'He/Him'), ('t', 'They/Their')])
+    pronouns = SelectField('Pronouns', choices=[(None, 'Pronouns'),('She/Her', 'She/Her'), ('He/Him', 'He/Him'), ('They/Them', 'They/Them')])
     avatar = SelectField(u'Choose Your Avatar', choices=[(None,'Avatar'),('d', 'Dog'), ('c', 'Cat'), ('s', 'Sunset')])
     submit = SubmitField('Sign Up')
 

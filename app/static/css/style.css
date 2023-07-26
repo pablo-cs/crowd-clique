@@ -252,7 +252,7 @@ a:hover {
 }
 .event-info-content{
   width:30%;
-  height:370px;
+  height:100%;
   background-color:rgb(181, 177, 177) ;
   text-align: center;
   border: 5px solid black ;
