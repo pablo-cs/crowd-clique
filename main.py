@@ -28,4 +28,4 @@ app.route('/remove_attendee',methods=['GET', 'POST'])(remove_attendee)
 app.route('/profile',methods=['GET', 'POST'])(profile)
 app.route('/logout')(logout)
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=False, host="0.0.0.0")
