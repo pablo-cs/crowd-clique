@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="top">
     <div>
         <h1 class="cc-top">CROWD CLIQUE</h1>
     </div>
@@ -18,7 +19,7 @@
         <button class="logout-btn" type="submit" >Logout</button>
         </form>
         <form action= "{{url_for('event_landing')}}">
-        <button class="logout-btn" type="submit" >Home</button>
+        <button class="logout-btn" type="submit" id="home">Home</button>
         </form>
     </div>
   </nav>
@@ -29,6 +30,7 @@
             <button type="submit" class="sbut">Search</button>
         </form>
     </div>
+</div>
     <br>
     <br>
     {% block inner_content %}

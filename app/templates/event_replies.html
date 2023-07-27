@@ -16,7 +16,8 @@
             <h3 class="usr"> • {{ reply.user_name }}, {{ reply.timestamp }}</h3>
         </div>
     {% endfor %}
-    <div class="add-comment">
+</div>
+<div class="add-comment-reply">
     <h3>Add a Reply</h3>
     <form id="reply-form" action="{{ url_for('add_reply') }}" method="POST">
         {{ form.csrf_token }}
@@ -28,5 +29,4 @@
         <button type="submit">Submit Reply</button>
     </form>
     </div>
-</div>
 {% endblock comment %}

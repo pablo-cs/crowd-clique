@@ -7,7 +7,7 @@ body {
     font-family: 'AchieveBold', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background-color: #e4e9fa;
 }
 
 .container {
@@ -78,7 +78,7 @@ body {
 /* For a medium-sized image with a specific width */
 .event-image {
     max-width: 365px;
-    margin-top:-70px;
+    margin-top:-40px;
     margin-bottom: 10px;
     background-color: rgb(151, 144, 144);
     border-radius: 20px;
@@ -244,8 +244,9 @@ a:hover {
 
 .cc-top{
   font-size: 60px ;
-  margin-left: 34% ;
+  margin-left: 33% ;
   margin-top:20px;
+  color:  #e4e9fa;
 }
 .event-name {
   margin-left:390px;
@@ -264,8 +265,13 @@ a:hover {
 }
 
 .add-comment{
-  width:95%;
-  margin-left:15px;
+  width:52%;
+  margin-left:40%;
+  margin-top: 10px;
+}
+.add-comment-reply {
+  width:52%;
+  margin-left:40%;
   margin-top: 10px;
 }
 
@@ -321,14 +327,16 @@ a:hover {
 }
  .bigbox{
    width: 650px;
-   height: 490px;
-   margin-top:-490px;
+   height: 700px;
+   margin-top:-730px;
    margin-left: 510px;
    background-color: #c5c9cc;
    border: 5px solid black;
    border-radius: 10px;
    overflow-y:scroll ;
+   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
  }
+
  .bigbox::-webkit-scrollbar {
    display: none;
 }
@@ -336,6 +344,7 @@ a:hover {
 .navbar-container {
   width: 50%;
   margin-left: auto;
+ 
 }
 .navbar-pic{
   display: flex;
@@ -360,7 +369,13 @@ a:hover {
   margin-top:-40px;
   
 }
+.top {
+   background-color: #003559;
+   opacity: 0.9;
+   margin-top: -20px;
+   height: 130px;
 
+}
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -382,7 +397,7 @@ a:hover {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  margin-left:-100%;
+  margin-left:-30px;
   margin-top: -42px;
   border-style: solid;
   
@@ -417,7 +432,7 @@ a:hover {
   width:40px;
   height:40px;
   border-radius: 50%;
-  margin-left: 20px;
+  margin-left: -40px;
   border-style: solid;
 }
 
@@ -429,8 +444,21 @@ a:hover {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left:-15%;
+  margin-left:-130px;
   margin-top: -20px;
+  width:100px;
+}
+#home {
+  background-color: #fff;
+  color: #333;
+  border: 3px solid black;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left:-25px;
+  margin-top: -20px;
+  width: 80px;
 }
 
 .logout-btn:hover {

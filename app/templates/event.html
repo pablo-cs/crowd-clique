@@ -3,7 +3,6 @@
   {% if event_details == None %}
     <h2>Event Not Found</h2>
   {% else %}
-    <h1 class="event-name">{{ event_details['name']}}</h1>
     <div class="event-info ">
       <div class="event-image-container">
         {% if event_details['image'] %}
@@ -13,7 +12,7 @@
         {% endif %}
       </div>
       <div class="event-info-content">
-        <h1>Event Information</h1>
+        <h1>{{ event_details['name'] }}</h1>
         <table>
           <tr>
             <th>Venue:</th>
